@@ -1,3 +1,6 @@
+$green-success: #198754;
+$green-success-light: #3da474;
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 * {
@@ -611,4 +614,120 @@ h1{
   align-items: center;
   padding-top: 20px;
   min-height: calc(100vh - 250px);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: $green-success;
+  box-shadow: 0 0 0 0.25rem rgba(25,135,84,.25);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  color: initial;
+}
+
+.form {
+  width: 35%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+
+  &-container {
+    box-shadow: 0px 0px 6px 0px gray;
+    padding: 25px;
+    border-radius: 10px;
+    background-color: white;
+  }
+
+  &-product {
+    width: 60%;
+  }
+
+  &-image {
+    height: 200px;
+    width: 200px;
+    object-fit: contain;
+    border-radius: 15px;
+    align-self: center;
+    margin-top: 20px;
+  }
+
+  &-flex{
+    &-row {
+      display: flex;
+      justify-content: space-around;
+      margin: 10px 10px;
+    }
+    &-column {
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      width: 75%;
+      align-self: center;
+    }
+  }
+
+  &-check-input {
+    &:checked {
+      background-color: $green-success;
+      border-color: $green-success;
+    }
+    &:focus {
+      box-shadow: 0 0 0 0.25rem rgba(25,135,84,.25);
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .form {
+    width: 50%;
+  }
+}
+
+@media (max-width: 800px) {
+  .form {
+    width: 60%;
+  }
+}
+
+@media (max-width: 700px) {
+  .form {
+    width: 70%;
+  }
+}
+
+@media (max-width: 600px) {
+  .form {
+    width: 80%;
+  }
+}
+
+.buttons-row {
+  margin: 20px 0px;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.display-linebreak {
+  white-space: pre-line;
+}
+
+p.warning-text {
+  margin-top: 10px;
+  color: #fd7e14;
+}
+
+p.error-text {
+  color: #dc3545;
 }
