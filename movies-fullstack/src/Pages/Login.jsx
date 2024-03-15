@@ -3,16 +3,17 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { reset, login } from '../Features/Auth/authSlice'
+import { reset, login } from '@/Features/Auth/authSlice'
 import { toast } from 'react-toastify'
 import { useEffect } from 'react'
+import Spinner from '@/Components/Spinner/Spinner'
 
 const Login = () => {
   const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
-  const { user, isError, isSuccess, message } = useSelector((state) => state.auth)
+  const { user, isError, isSuccess, isLoading, message } = useSelector((state) => state.auth)
 
   const loginFormSchema = yup.object().shape({
     // eslint-disable-next-line no-useless-escape
@@ -25,8 +26,6 @@ const Login = () => {
   })
 
   const onSubmit = (data) => {
-    // e.preventDefault()
-
     const userData = {
       email: data.email,
       password: data.password
@@ -40,15 +39,23 @@ const Login = () => {
     }
 
     if (isSuccess || user) {
-      navigate('/')
+      if (user?.isVerified) {
+        navigate('/')
+      } else {
+        navigate('/verification-pending/0')
+      }
     }
 
     dispatch(reset())
   }, [user, isError, isSuccess, message, navigate, dispatch])
 
+  if (isLoading) {
+    return <Spinner />
+  }
+
   return (
     <div className='page-container'>
-      <h2>Inicia sesión para empezar a comprar</h2>
+      <h2>Inicia sesión para ver tus películas favoritas</h2>
       <div className='form'>
         <div className='form-container'>
           <form
@@ -62,7 +69,6 @@ const Login = () => {
                 id='email'
                 className='form-control'
                 {...register('email')}
-              // onChange={onChange}
               />
               <label htmlFor='email'>Correo electrónico</label>
             </div>
@@ -75,17 +81,16 @@ const Login = () => {
                 id='password'
                 className='form-control'
                 {...register('password')}
-              // onChange={onChange}
               />
               <label htmlFor='password'>Contraseña</label>
             </div>
             <p className='warning-text'>{errors.password?.message}</p>
 
-            {/* <p className='error-text'>{errorMessage}</p> */}
             <button type='submit' className='btn btn-success btn-form'>
               Iniciar Sesión
             </button>
           </form>
+          <Link to='/forgotten'>¿Olvidaste tu contraseña?</Link>
           <p>¿Eres un nuevo usuario?</p>
           <Link to='/signup'>Regístrate ahora</Link>
         </div>

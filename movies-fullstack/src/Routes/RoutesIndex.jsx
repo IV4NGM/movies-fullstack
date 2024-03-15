@@ -9,6 +9,7 @@ import ForgottenPassword from '@/Pages/ForgottenPassword'
 import ConfirmEmail from '@/Pages/ConfirmEmail'
 import ResetPassword from '@/Pages/ResetPassword'
 import UserInfo from '@/Pages/UserInfo'
+import PendingEmailConfirmation from '@/Pages/PendingEmailConfirmation'
 
 const RouterIndex = () => {
   return (
@@ -16,12 +17,13 @@ const RouterIndex = () => {
       <Route path='/' element={<Home />} />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<Signup />} />
-      <Route path='/confirm/:id/:token' element={<ConfirmEmail />} />
+      <Route path='/verification-pending/:newUser' element={<PendingEmailConfirmation />} />
+      <Route path='/verify/:id/:token' element={<ConfirmEmail />} />
       <Route path='/me' element={<UserInfo />} />
       <Route path='/new-movie' element={<CreateMovie />} />
       <Route path='/edit/:id' element={<EditMovie />} />
-      <Route path='/forgot' element={<ForgottenPassword />} />
-      <Route path='/reset/:id/:token' element={<ResetPassword />} />
+      <Route path='/forgotten' element={<ForgottenPassword />} />
+      <Route path='/reset-password/:id/:token' element={<ResetPassword />} />
       <Route path='/*' element={<PageNotFound />} />
     </Routes>
   )
