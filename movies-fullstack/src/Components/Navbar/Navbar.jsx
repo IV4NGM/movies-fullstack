@@ -1,7 +1,20 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import eagleIcon from '@/assets/eagle-icon.png'
+import { useSelector, useDispatch } from 'react-redux'
+import { logout, reset } from '@/Features/Auth/authSlice'
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const { user } = useSelector((state) => state.auth)
+
+  const onLogout = () => {
+    dispatch(logout())
+    dispatch(reset())
+    navigate('/login')
+  }
+
   return (
     <nav className='navbar navbar-expand-lg bg-body-tertiary sticky-top' data-bs-theme='dark'>
       <div className='container-fluid'>
@@ -19,8 +32,9 @@ const Navbar = () => {
             </li>
           </ul>
           <div className='d-flex'>
-            <button type='button' className='form-control me-2 btn btn-outline-secondary'>Regístrate</button>
-            <button className='form-control me-2 btn btn-outline-success' type='submit'>Iniciar sesión</button>
+            <button type='button' className='form-control me-2 btn btn-outline-secondary' onClick={() => navigate('/signup')}>Regístrate</button>
+            <button className='form-control me-2 btn btn-outline-success' onClick={() => navigate('/login')}>Iniciar sesión</button>
+            <button type='button' className='form-control me-2 btn btn-outline-secondary' onClick={onLogout}>Cerrar sesión</button>
           </div>
         </div>
       </div>
