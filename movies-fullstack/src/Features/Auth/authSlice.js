@@ -80,7 +80,7 @@ export const resetPassword = createAsyncThunk('auth/reset-password', async (user
 // Modificar usuario
 export const updateUser = createAsyncThunk('auth/update-user', async (userData, thunkAPI) => {
   try {
-    return await authService.updateUser(userData)
+    return await authService.updateUser(userData, thunkAPI.getState().auth.user.token)
   } catch (error) {
     const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
