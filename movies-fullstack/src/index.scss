@@ -1,0 +1,614 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  background-color: #161a1d;
+  color: white;
+  margin: 0;
+  min-height: 100vh;
+  height: 100vh;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(144, 144, 144);
+  border-radius: 10px;
+  border: 4px solid transparent;
+  background-clip: content-box;
+}
+
+body::-webkit-scrollbar {
+  width: 16px;
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb:hover{
+  background-color: rgb(171, 171, 171);
+}
+
+textarea:active::-webkit-scrollbar-thumb,
+textarea:focus::-webkit-scrollbar-thumb,
+textarea:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+textarea::-webkit-scrollbar-thumb {
+    background-color: rgb(144, 144, 144);
+    border-radius: 10px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+    visibility: hidden;
+}
+
+textarea::-webkit-scrollbar {
+    width: 12px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover{
+  background-color: rgb(171, 171, 171);
+}
+
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+p {
+  line-height: 1.7;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  line-height: 2.2;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+#root{
+  padding: 0;
+  max-width: 100%;
+  background-color: #161a1d;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+/* body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+} */
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+h1{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h2{
+  margin-top: 100px;
+  margin-bottom: 40px;
+}
+
+h3{
+  color: #e5383b !important;
+}
+
+h5{
+  text-align: center;
+}
+
+.body-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar-brand{
+  display: flex;
+  align-items: center;
+}
+
+.logo-nav{
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+  // background-color: #6a040f;
+  // padding: 5px;
+  // border-radius: 50%;
+}
+
+// .big-logo{
+//   width: 300px;
+//   height: 300px;
+//   background-color: #6a040f;
+//   padding: 20px;
+//   border-radius: 50%;
+// }
+
+.navbar-brand p{
+  font-weight: bold;
+  margin: 0;
+}
+
+.nav-item{
+  margin-right: 20px;
+}
+
+.form-control{
+  min-width: fit-content;
+}
+
+a.navbar-brand{
+  margin-left: 10px;
+}
+
+a.nav-link{
+  font-size: 17px;
+  /* color: #f48c06; */
+}
+
+ul.navbar-nav{
+  margin-left: 20px;
+}
+
+.attribution{
+  display: flex;
+  margin: 20px 20px 20px 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.attribution p{
+  margin: 0;
+  color: white;
+}
+
+.attribution img{
+  height: 45px;
+  width: auto;
+  margin-right: 20px;
+}
+
+.login-card{
+  width: 40%;
+}
+
+.carousel{
+  margin-top: 40px;
+  width: 75%;
+  align-self: center;
+}
+
+.carousel-item img{
+  height: 60vh;
+  object-fit: cover;
+  object-position: 50% top;
+}
+
+.two-content{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 70%;
+}
+
+.action-text{
+  color: #004e98;
+}
+
+.action-text:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.logo-container{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.consult-text{
+  margin-top: 200px;
+  margin-bottom: 50px;
+}
+
+.catalogo{
+  display: flex;
+  width: 90%;
+}
+
+.score-container{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#score{
+  width: 90%;
+}
+
+.left-catalog{
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  min-height: 630px !important;
+  flex-wrap: wrap;
+}
+
+.advertisement{
+  margin-top: 250px;
+  width: 80%;
+  min-height: max-content;
+}
+
+.advertisement-text{
+  text-align: center;
+}
+
+.vertical-flex{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-adv{
+  height: 40px;
+  width: 40px;
+}
+
+.pointer:hover{
+  cursor: pointer;
+}
+
+#filter-form{
+  width: 100%;
+}
+
+.genre-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 140px);
+}
+
+.filter-title{
+  margin-top: 15px;
+}
+
+.movies-container{
+  width: 100%;
+  margin-left: 30px;
+  /* Comment all the following lines to activate Masonry */
+  /* display: grid;
+  grid-template-columns: repeat(3, 300px);
+  justify-content: center;
+  gap: 15px;
+  align-items: flex-start; */
+}
+
+.movie-card{
+  width: 300px;
+  /* Comment all the following lines to activate Masonry */
+  /* height: 100%; */
+  padding: 18px;
+}
+
+.card-body-movie{
+  display: flex;
+  flex-direction: column;
+  /* Comment all the following lines to activate Masonry */
+  /* justify-content: space-between; */
+}
+
+.card-title{
+  align-self: center;
+  margin-bottom: 20px !important;
+}
+
+.card-img-movie{
+  height: auto;
+  width: 185px;
+  align-self: center;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.movie-genres-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.movie-genre{
+  margin: 5px;
+}
+
+.btn-play{
+  display: flex;
+  justify-content: center;
+}
+
+.movie-row-container{
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.movie-row-container p{
+  margin-bottom: 0;
+  margin-right: 5px;
+}
+
+.star-image{
+  content: url('https://static.vecteezy.com/system/resources/previews/022/133/469/original/star-shape-star-icon-yellow-star-in-rating-symbol-free-png.png');
+  height: 18px;
+  width: 18px;
+}
+
+.description-toggle{
+  margin-top: 10px;
+}
+
+.description-text{
+  text-align: justify;
+  display: none;
+}
+
+.bold-text{
+  font-weight: bold;
+}
+
+.underlined-text{
+  text-decoration: underline;
+}
+
+.show-text{
+  display: block;
+}
+
+.grid-item-ms{
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.sorry-no-movies{
+  text-align: center;
+  font-size: 20px;
+}
+
+.no-movies-img{
+  content: url('https://cdn0.iconfinder.com/data/icons/web-development-48/64/error-404-warning-computer-program-512.png');
+  zoom: 50%;
+}
+
+.footer{
+  margin-top: 80px;
+  height: 90px;
+}
+
+.footer-body{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 30px 0px 30px !important;
+}
+
+.footer-body p{
+  margin: 0;
+}
+
+.mail-footer{
+  display: flex;
+}
+
+.mail-icon-footer{
+  margin-right: 10px;
+}
+
+.movies-container-grid{
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 320px);
+  gap: 20px;
+  justify-content: center;
+}
+
+.space-up{
+  margin-top: 10px;
+}
+
+.head-title{
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+h1{
+  margin-top: 20px !important;
+}
+
+.row-container{
+  display: flex;
+  height: auto;
+  justify-content: space-around;
+  align-self: center !important;
+  width: 80%;
+  align-items: center;
+}
+
+.row-filtro{
+  width: 70%;
+  justify-content: center;
+}
+
+.row-filtro p{
+  margin-left: 20px !important;
+}
+
+.row-container p{
+  margin: 0px;
+  align-self: center;
+}
+
+.btn-limpiar{
+  width: fit-content !important;
+  margin-left: 20px;
+}
+
+.buscador-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.filtro-container{
+  width: 50%;
+  align-self: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.head-color{
+  color: #e5383b !important;
+}
+
+.form-range{
+  width: 90% !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+.range-number{
+  font-size: 18px;
+}
+
+.consulta-input{
+  width: 70% !important;
+}
+
+.btn-movie{
+  margin-top: 10px;
+}
+
+.movie-details{
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  margin: 20px 40px 20px 40px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 70%;
+  align-self: center;
+}
+
+.movie-details p{
+  text-align: initial;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  min-height: calc(100vh - 250px);
+}
