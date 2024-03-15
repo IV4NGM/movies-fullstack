@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import Spinner from '@/Components/Spinner/Spinner'
+import { getAllGenres, getAllMovies, getContextMovies, reset } from '@/Features/Movies/movieSlice'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -17,16 +18,18 @@ const Home = () => {
 
     if (user) {
       if (user.isVerified) {
-        // dispatch(getMovies())
+        dispatch(getContextMovies())
       } else {
         navigate('/verification-pending/0')
       }
     } else {
-      navigate('/login')
+      dispatch(getAllMovies())
     }
 
+    dispatch(getAllGenres())
+
     return () => {
-      // dispatch(reset())
+      dispatch(reset())
     }
   }, [user, navigate, isError, message, dispatch])
 
