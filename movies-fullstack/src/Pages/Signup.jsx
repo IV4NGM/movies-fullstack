@@ -44,6 +44,15 @@ const Signup = () => {
       toast.success('Usuario registrado correctamente')
       navigate('/verification-pending/1')
     }
+
+    if (user) {
+      if (user?.isVerified) {
+        navigate('/')
+      } else {
+        navigate('/verification-pending/0')
+      }
+    }
+
     dispatch(reset())
   }, [user, isError, isSuccess, message, navigate, dispatch])
 
