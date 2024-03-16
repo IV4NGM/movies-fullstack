@@ -10,6 +10,7 @@ import ConfirmEmail from '@/Pages/ConfirmEmail'
 import ResetPassword from '@/Pages/ResetPassword'
 import UserInfo from '@/Pages/UserInfo'
 import PendingEmailConfirmation from '@/Pages/PendingEmailConfirmation'
+import MovieInfo from '@/Pages/MovieInfo'
 
 const RouterIndex = () => {
   return (
@@ -20,6 +21,7 @@ const RouterIndex = () => {
       <Route path='/verification-pending/:newUser' element={<PendingEmailConfirmation />} />
       <Route path='/verify/:id/:token' element={<ConfirmEmail />} />
       <Route path='/me' element={<UserInfo />} />
+      <Route path='/movie/:id' element={<MovieInfo />} />
       <Route path='/new-movie' element={<CreateMovie />} />
       <Route path='/edit/:id' element={<EditMovie />} />
       <Route path='/forgotten' element={<ForgottenPassword />} />
