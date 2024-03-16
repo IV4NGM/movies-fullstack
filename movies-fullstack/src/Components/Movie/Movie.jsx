@@ -6,6 +6,12 @@ import LikesButton from '@/Components/LikesButton/LikesButton'
 const Movie = ({ movieData }) => {
   const releaseDate = new Date(movieData.release_date)
   releaseDate.setUTCHours(0, 0, 0, 0)
+  const year = releaseDate.getUTCFullYear()
+  const month = releaseDate.getUTCMonth() + 1
+  const day = releaseDate.getUTCDate()
+
+  // Construct the date string without the time component
+  const dateWithoutTime = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`
   return (
     <div className='card movie-card'>
       <div className='card-body card-body-movie'>
@@ -18,7 +24,7 @@ const Movie = ({ movieData }) => {
         </div>
         <div className='movie-row-container'>
           <p className='card-text bold-text'>Estreno:</p>
-          <p className='card-text'>{releaseDate.toLocaleDateString()}</p>
+          <p className='card-text'>{dateWithoutTime}</p>
         </div>
         <div className='movie-row-container'>
           <LikesButton like filled={movieData.isLiked === 1} likesCount={movieData.likes_count} movieId={movieData._id} />
