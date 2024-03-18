@@ -29,6 +29,25 @@ const getContextMovies = async (token) => {
   return response.data
 }
 
+// Obtener una película (not logged)
+const getOneMovie = async (movieId) => {
+  const response = await axios.get(API_URL + `/${movieId}`)
+
+  return response.data
+}
+
+// Obtener una película (logged)
+const getOneMovieContext = async (movieId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  const response = await axios.get(API_URL + `/context/${movieId}`, config)
+
+  return response.data
+}
+
 // Like movie
 const likeMovie = async (movieId, token) => {
   const config = {
@@ -106,6 +125,8 @@ const movieService = {
   getAllGenres,
   getAllMovies,
   getContextMovies,
+  getOneMovie,
+  getOneMovieContext,
   likeMovie,
   dislikeMovie,
   resetLikesMovie,
