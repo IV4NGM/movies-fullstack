@@ -1,10 +1,15 @@
 /* eslint-disable react/prop-types */
 import './Movie.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import LikesButton from '@/Components/LikesButton/LikesButton'
 import NoMovie from '@/assets/NoMovie.jpg'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 
 const Movie = ({ movieData }) => {
+  const { user } = useSelector((state) => state.auth)
+  const navigate = useNavigate()
+
   const releaseDate = new Date(movieData.release_date)
   releaseDate.setUTCHours(0, 0, 0, 0)
   const year = releaseDate.getUTCFullYear()
@@ -15,6 +20,17 @@ const Movie = ({ movieData }) => {
   const dateWithoutTime = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`
   return (
     <div className='card movie-card'>
+      {user?.isAdmin
+        ? (
+          <div
+            className='edit-icon' onClick={(event) => {
+              event.stopPropagation()
+              navigate(`/edit/${movieData?._id}`)
+            }}
+          ><EditOutlinedIcon />
+          </div>
+        )
+        : ''}
       <div className='card-body card-body-movie'>
         <h5 className='card-title'>{movieData.title}</h5>
         <img
