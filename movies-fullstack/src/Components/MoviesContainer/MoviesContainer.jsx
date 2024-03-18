@@ -7,7 +7,7 @@ const MoviesContainer = ({ onlyLiked = true }) => {
   const { movies, likedMovies } = useSelector((state) => state.movie)
   if ((onlyLiked && likedMovies.length === 0) || (!onlyLiked && movies.length === 0)) return <></>
   return (
-    <div>
+    <div className='movies-container-div'>
       <h4>{onlyLiked ? 'Me gusta' : 'Todas las películas'}</h4>
       <div className='movies-container'>
         {
