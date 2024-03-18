@@ -11,7 +11,7 @@ const Home = () => {
   const dispatch = useDispatch()
 
   const { user } = useSelector((state) => state.auth)
-  const { isLoading, isError, message, errorType } = useSelector((state) => state.movie)
+  const { isError, message, errorType } = useSelector((state) => state.movie)
 
   const errorTypesAllowed = ['GET_GENRES', 'GET_MOVIES', 'LIKE_MOVIE']
 
@@ -19,6 +19,7 @@ const Home = () => {
     if (isError && errorTypesAllowed.includes(errorType)) {
       console.log(message)
       toast.error(message)
+      // dispatch(resetApiState())
     }
 
     if (user) {
@@ -32,7 +33,7 @@ const Home = () => {
     }
 
     dispatch(getAllGenres())
-  }, [user, isError])
+  }, [isError])
 
   return (
     <div className='page-container'>

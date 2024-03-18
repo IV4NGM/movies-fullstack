@@ -3,12 +3,14 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import eagleIcon from '@/assets/eagle-icon.png'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '@/Features/Auth/authSlice'
+import { resetApiState } from '@/Features/Movies/movieSlice'
 
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
+import { useEffect } from 'react'
 
 const Navbar = () => {
   const dispatch = useDispatch()
@@ -19,10 +21,15 @@ const Navbar = () => {
   const onLogout = () => {
     dispatch(logout())
     dispatch(reset())
+    dispatch(resetApiState())
     setTimeout(() => {
       navigate('/login')
     }, 10)
   }
+
+  useEffect(() => {
+    dispatch(resetApiState())
+  }, [navigate])
 
   return (
     <nav className='navbar navbar-expand-lg bg-body-tertiary sticky-top' data-bs-theme='dark'>
