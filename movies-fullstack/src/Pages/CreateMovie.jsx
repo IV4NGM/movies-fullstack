@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getAllGenres, createMovie } from '@/Features/Movies/movieSlice'
+import { getAllGenres, createMovie, resetApiState } from '@/Features/Movies/movieSlice'
 
 import TextField from '@mui/material/TextField'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -14,6 +14,7 @@ import dayjs from 'dayjs'
 import 'dayjs/locale/es'
 
 import NoMovie from '@/assets/NoMovie.jpg'
+import { toast } from 'react-toastify'
 
 const CreateMovie = () => {
   dayjs.locale('es')
@@ -21,10 +22,13 @@ const CreateMovie = () => {
   const dispatch = useDispatch()
 
   const { user } = useSelector((state) => state.auth)
-  const { genres } = useSelector((state) => state.movie)
+  const { genres, isSuccess, successType, isError, message, errorType } = useSelector((state) => state.movie)
 
   const [backdropURL, setBackdropURL] = useState('')
   const [posterURL, setPosterURL] = useState('')
+
+  const successTypesAllowed = ['CREATED_MOVIE']
+  const errorTypesAllowed = ['GET_GENRES', 'CREATE_MOVIE']
 
   const genresAllowed = genres
 
@@ -49,9 +53,12 @@ const CreateMovie = () => {
     utcDate.setUTCHours(0, 0, 0, 0) // Set time to 00:00:00:000 in UTC
     formattedData.release_date = utcDate.toUTCString()
     formattedData.addURLPrefix = false
-    formattedData.genre_ids = formattedData.genre_ids.map((id) => parseInt(id))
-    dispatch(createMovie(formattedData))
-    navigate('/')
+    if (!formattedData.genre_ids) {
+      toast.error('No hay géneros disponibles')
+    } else {
+      formattedData.genre_ids = formattedData.genre_ids.map((id) => parseInt(id))
+      dispatch(createMovie(formattedData))
+    }
   }
 
   useEffect(() => {
@@ -64,8 +71,25 @@ const CreateMovie = () => {
     } else {
       navigate('/login')
     }
+
+    if (isError && errorTypesAllowed.includes(errorType)) {
+      toast.error(message)
+    }
+
+    if (isSuccess && successTypesAllowed.includes(successType)) {
+      toast.success(message)
+      dispatch(resetApiState())
+      navigate('/')
+    }
+
+    // dispatch(resetApiState())
+
     dispatch(getAllGenres())
-  }, [navigate, user, dispatch])
+
+    // return () => {
+    //   dispatch(resetApiState())
+    // }
+  }, [user, isError, isSuccess, successType, errorType])
 
   return (
     <div className='page-container'>
@@ -144,6 +168,16 @@ const CreateMovie = () => {
             <p className='warning-text'>{errors.vote_average?.message}</p>
 
             <p className='medium-text'>Géneros de la película</p>
+            {!genresAllowed.length &&
+              <button
+                className='btn btn-secondary'
+                type='button'
+                onClick={() => {
+                  dispatch(resetApiState())
+                }}
+              >
+                Recargar géneros
+              </button>}
             {genresAllowed.map((genre, index) => (
               <div className='form-check' key={`genre-div-${index}`}>
                 <input
