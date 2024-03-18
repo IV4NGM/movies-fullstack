@@ -189,7 +189,7 @@ const CreateMovie = () => {
                 />
                 <label className='form-check-label' htmlFor={`genre_${genre.genre_id}`}>{genre.name}</label>
               </div>))}
-            <p className='warning-text'>{errors.genre_ids?.message}</p>
+            <p className='warning-text'>{errors.genre_ids?.message.includes('genre_ids') ? 'Selecciona al menos un género' : errors.genre_ids?.message}</p>
 
             <div className='form-floating'>
               <textarea
@@ -246,62 +246,6 @@ const CreateMovie = () => {
               }}
             />
             <p className='warning-text'>{errors.poster_path?.message}</p>
-            {/* <div className='form-flex-row'>
-              <div className='form-check'>
-                <input className='form-check-input' type='radio' name='image-src' id='image-src-url' value='url' checked={imageSrc === 'url'} onChange={(event) => setImageSrc(event.target.value)} />
-                <label className='form-check-label' htmlFor='image-src-url'>
-                  URL
-                </label>
-              </div>
-              <div className='form-check'>
-                <input className='form-check-input' type='radio' name='image-src' id='image-src-file' value='file' checked={imageSrc === 'file'} onChange={(event) => setImageSrc(event.target.value)} />
-                <label className='form-check-label' htmlFor='image-src-file'>
-                  De archivo
-                </label>
-              </div>
-            </div> */}
-
-            {/* {imageSrc === 'url'
-              ? (
-                <>
-                  <div className='form-floating'>
-                    <input
-                      type='text'
-                      name='image'
-                      placeholder='URL'
-                      id='image'
-                      className='form-control'
-                      {...register('image')}
-                      value={imageUrl}
-                      onChange={(event) => setImageUrl(event.target.value)}
-                    />
-                    <label htmlFor='image'>URL de la imagen del producto</label>
-                  </div>
-                  <img
-                    src={imageUrl || ProductDefaultImage || ''} className='product-image-card edit-image' alt='Product-image' onError={({ currentTarget }) => {
-                      currentTarget.onerror = null
-                      currentTarget.src = ProductDefaultImage
-                    }}
-                  />
-                  <p className='warning-text'>{errors.image?.message}</p>
-                </>
-              )
-              : (
-                <div className='form-flex-column'>
-                  <input
-                    type='file'
-                    name='image64'
-                    id='image64'
-                    className='form-control'
-                    onChange={(event) => {
-                      setImageFile(URL.createObjectURL(event.target.files[0]))
-                      handleFileRead(event)
-                    }}
-                  />
-                  <img src={imageFile || ProductDefaultImage} className='product-image-card edit-image' alt='Product-image' />
-                  <p className='warning-text'>{base64ErrorText}</p>
-                </div>
-              )} */}
 
             <button type='submit' className='btn btn-success'>
               Crear película
