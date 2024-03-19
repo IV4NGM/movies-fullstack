@@ -8,6 +8,7 @@ import { resetApiState } from '@/Features/Movies/movieSlice'
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined'
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import { useEffect } from 'react'
@@ -65,15 +66,9 @@ const Navbar = () => {
                       <p className='dropdown-item-flex__p'><EmailOutlinedIcon className='dropdown-item-flex__icon' /> {user.email}</p>
                       {user?.isAdmin ? <p className='dropdown-item-flex__p'><VerifiedUserOutlinedIcon className='dropdown-item-flex__icon' /> Administrador</p> : ''}
                     </li>
-
-                    {user?.isAdmin
-                      ? (
-                        <>
-                          <li><hr className='dropdown-divider' /></li>
-                          <li className='dropdown-item'><NavLink to='/new-movie'><AddOutlinedIcon /> Crear película</NavLink></li>
-                        </>
-                      )
-                      : ''}
+                    <li><hr className='dropdown-divider' /></li>
+                    <li className='dropdown-item'><NavLink to='/me'><SettingsOutlinedIcon /> Configuración</NavLink></li>
+                    {user?.isAdmin && <li className='dropdown-item'><NavLink to='/new-movie'><AddOutlinedIcon /> Crear película</NavLink></li>}
                     <li><hr className='dropdown-divider' /></li>
                     <li className='dropdown-item'><span className='navbar-brand navbar-brand__logout' onClick={onLogout}><LogoutOutlinedIcon /> Cerrar Sesión</span></li>
                   </ul>
