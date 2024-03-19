@@ -23,7 +23,6 @@ const MovieInfo = () => {
 
   const moviesIds = movies.map((movie) => movie._id)
   useEffect(() => {
-    // dispatch(resetApiState())
     if (user) {
       if (!user.isVerified) {
         navigate('/verification-pending/0')
@@ -32,15 +31,19 @@ const MovieInfo = () => {
     } else {
       navigate('/login')
     }
-    if (isError && errorTypesAllowed.includes(errorType)) {
-      toast.error(message)
-      dispatch(resetApiState())
-    }
 
     return () => {
       dispatch(resetApiState())
     }
-  }, [id, user, isError])
+  }, [id, user])
+
+  useEffect(() => {
+    if (isError && errorTypesAllowed.includes(errorType)) {
+      toast.error(message)
+      navigate('/')
+    }
+    dispatch(resetApiState())
+  }, [isError, isSuccess, message, errorType])
 
   const movieIndex = moviesIds.findIndex((movieId) => movieId === id)
 

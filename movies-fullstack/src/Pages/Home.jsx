@@ -11,17 +11,11 @@ const Home = () => {
   const dispatch = useDispatch()
 
   const { user } = useSelector((state) => state.auth)
-  const { isError, message, errorType } = useSelector((state) => state.movie)
+  const { isError, isSuccess, message, errorType } = useSelector((state) => state.movie)
 
   const errorTypesAllowed = ['GET_GENRES', 'GET_MOVIES', 'LIKE_MOVIE']
 
   useEffect(() => {
-    if (isError && errorTypesAllowed.includes(errorType)) {
-      console.log(message)
-      toast.error(message)
-      // dispatch(resetApiState())
-    }
-
     if (user) {
       if (user.isVerified) {
         dispatch(getContextMovies())
@@ -31,9 +25,19 @@ const Home = () => {
     } else {
       dispatch(getAllMovies())
     }
-
     dispatch(getAllGenres())
-  }, [isError])
+    return () => {
+      dispatch(resetApiState())
+    }
+  }, [])
+
+  useEffect(() => {
+    if (isError && errorTypesAllowed.includes(errorType)) {
+      console.log(message)
+      toast.error(message)
+    }
+    dispatch(resetApiState())
+  }, [isError, isSuccess, message, errorType])
 
   return (
     <div className='page-container'>

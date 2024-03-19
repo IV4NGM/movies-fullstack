@@ -15,6 +15,7 @@ import 'dayjs/locale/es'
 
 import NoMovie from '@/assets/NoMovie.jpg'
 import { toast } from 'react-toastify'
+import Spinner from '@/Components/Spinner/Spinner'
 
 const CreateMovie = () => {
   dayjs.locale('es')
@@ -22,7 +23,7 @@ const CreateMovie = () => {
   const dispatch = useDispatch()
 
   const { user } = useSelector((state) => state.auth)
-  const { genres, isSuccess, successType, isError, message, errorType } = useSelector((state) => state.movie)
+  const { genres, isSuccess, successType, isError, message, errorType, isLoading } = useSelector((state) => state.movie)
 
   const [backdropURL, setBackdropURL] = useState('')
   const [posterURL, setPosterURL] = useState('')
@@ -72,24 +73,27 @@ const CreateMovie = () => {
       navigate('/login')
     }
 
-    if (isError && errorTypesAllowed.includes(errorType)) {
-      toast.error(message)
-    }
-
-    if (isSuccess && successTypesAllowed.includes(successType)) {
-      toast.success(message)
-      dispatch(resetApiState())
-      navigate('/')
-    }
-
-    // dispatch(resetApiState())
-
     dispatch(getAllGenres())
 
     // return () => {
     //   dispatch(resetApiState())
     // }
-  }, [user, isError, isSuccess, successType, errorType])
+  }, [user])
+
+  useEffect(() => {
+    if (isError && errorTypesAllowed.includes(errorType)) {
+      toast.error(message)
+    }
+    if (isSuccess && successTypesAllowed.includes(successType)) {
+      toast.success(message)
+      navigate('/')
+    }
+    dispatch(resetApiState())
+  }, [isError, isSuccess, message, errorType])
+
+  if (isLoading) {
+    return <Spinner />
+  }
 
   return (
     <div className='page-container'>
@@ -173,7 +177,7 @@ const CreateMovie = () => {
                 className='btn btn-secondary'
                 type='button'
                 onClick={() => {
-                  dispatch(resetApiState())
+                  dispatch(getAllGenres())
                 }}
               >
                 Recargar géneros
