@@ -16,7 +16,8 @@
   padding-right: 10px;
   & .action {
     display: flex;
-    justify-content: center;
+    padding-left: 25px;
+    justify-content: flex-start;
     align-items: center;
     &-selected {
       background-color: rgba(228, 228, 228, 0.695);

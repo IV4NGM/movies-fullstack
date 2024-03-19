@@ -7,6 +7,11 @@ import { reset } from '@/Features/Auth/authSlice'
 import Info from '@/Components/UserInfoComponents/Info'
 import Update from '@/Components/UserInfoComponents/Update'
 import Security from '@/Components/UserInfoComponents/Security'
+
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
+import LoopOutlinedIcon from '@mui/icons-material/LoopOutlined'
+import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined'
+
 import { toast } from 'react-toastify'
 
 const UserInfo = () => {
@@ -58,13 +63,13 @@ const UserInfo = () => {
       <section className='my-info'>
         <article className='actions-list'>
           <div className={classesNamesCheckSelected('action action-border-bottom', 'info')} onClick={() => handleSelect('info')}>
-            <p>Mi información</p>
+            <InfoOutlinedIcon /> <p>Mi información</p>
           </div>
           <div className={classesNamesCheckSelected('action action-border-bottom', 'update')} onClick={() => handleSelect('update')}>
-            <p>Actualizar datos</p>
+            <LoopOutlinedIcon /> <p>Actualizar datos</p>
           </div>
           <div className={classesNamesCheckSelected('action', 'security')} onClick={() => handleSelect('security')}>
-            <p>Seguridad</p>
+            <AdminPanelSettingsOutlinedIcon /> <p>Seguridad</p>
           </div>
         </article>
         <aside className='context-info'>
