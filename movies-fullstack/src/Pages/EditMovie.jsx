@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getAllGenres, createMovie, resetApiState, getOneMovie } from '@/Features/Movies/movieSlice'
+import { getAllGenres, createMovie, resetApiState, getOneMovie, updateMovie, deleteMovie } from '@/Features/Movies/movieSlice'
 
 import TextField from '@mui/material/TextField'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -12,10 +12,13 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import dayjs from 'dayjs'
 import 'dayjs/locale/es'
+import utc from 'dayjs/plugin/utc'
 
 import NoMovie from '@/assets/NoMovie.jpg'
 import { toast } from 'react-toastify'
 import Spinner from '@/Components/Spinner/Spinner'
+import CustomModal from '@/Components/CustomModal/CustomModal'
+dayjs.extend(utc)
 
 const EditMovie = () => {
   dayjs.locale('es')
@@ -41,10 +44,12 @@ const EditMovie = () => {
   releaseDate = new Date(movieData?.release_date) || new Date()
   const genreIdsSelected = movieData?.genres?.map(genre => genre.genre_id)
 
-  const successTypesAllowed = ['CREATED_MOVIE']
-  const errorTypesAllowed = ['GET_GENRES', 'CREATE_MOVIE']
+  const successTypesAllowed = ['UPDATED_MOVIE', 'DELETED_MOVIE']
+  const errorTypesAllowed = ['GET_GENRES', 'UPDATE_MOVIE', 'DELETE_MOVIE']
 
   const genresAllowed = genres
+
+  const [showModalDelete, setShowModalDelete] = useState(false)
 
   const [backdropURL, setBackdropURL] = useState('')
   const [posterURL, setPosterURL] = useState('')
@@ -57,7 +62,7 @@ const EditMovie = () => {
   })
 
   const registerProductFormSchema = yup.object().shape({
-    title: yup.string().required('Escribe el título de la película').stripEmptyString().default(movieData.product_name),
+    title: yup.string().required('Escribe el título de la película').stripEmptyString().default(movieData.title),
     original_title: yup.string().required('Escribe el título original de la película').stripEmptyString().default(movieData.original_title),
     original_language: yup.string().required('Escribe el idioma original de la película').stripEmptyString().default(movieData.original_language),
     vote_average: yup.string('Debes ingresar un número').required('Escribe la calificación de la película').matches(/^[1-9]\d*(\.\d{1,2})?$/, 'La calificación debe ser un número con máximo 2 decimales').typeError('Debes ingresar un número'),
@@ -81,8 +86,8 @@ const EditMovie = () => {
       toast.error('No hay géneros disponibles')
     } else {
       formattedData.genre_ids = formattedData.genre_ids.map((id) => parseInt(id))
-      console.log(formattedData)
-      // dispatch(createMovie(formattedData))
+      // console.log(formattedData)
+      dispatch(updateMovie({ movieId: id, ...formattedData }))
     }
   }
 
@@ -97,25 +102,20 @@ const EditMovie = () => {
     } else {
       navigate('/login')
     }
+    dispatch(getAllGenres())
+  }, [user])
 
+  useEffect(() => {
     if (isError && errorTypesAllowed.includes(errorType)) {
       toast.error(message)
     }
 
     if (isSuccess && successTypesAllowed.includes(successType)) {
       toast.success(message)
-      dispatch(resetApiState())
       navigate('/')
     }
-
-    // dispatch(resetApiState())
-
-    dispatch(getAllGenres())
-
-    // return () => {
-    //   dispatch(resetApiState())
-    // }
-  }, [user, isError, isSuccess, successType, errorType])
+    dispatch(resetApiState())
+  }, [isError, isSuccess, message, errorType])
 
   useEffect(() => {
     if (movieData) {
@@ -188,7 +188,7 @@ const EditMovie = () => {
               <Controller
                 name='release_date'
                 control={control}
-                defaultValue={dayjs(movieData?.release_date)}
+                defaultValue={dayjs.utc(movieData?.release_date)}
                 render={({ field }) => (
                   <DatePicker
                     {...field}
@@ -299,9 +299,23 @@ const EditMovie = () => {
             <button type='submit' className='btn btn-success'>
               Modificar película
             </button>
+
+            <div className='flex-row buttons-row'>
+              <button type='button' className='btn btn-outline-secondary' onClick={() => navigate('/')}>Descartar cambios</button>
+              <button type='button' className='btn btn-outline-danger' onClick={() => setShowModalDelete(true)}>Eliminar película</button>
+            </div>
           </form>
         </div>
       </div>
+      <CustomModal
+        title='Eliminar película'
+        showModal={showModalDelete}
+        setShowModal={setShowModalDelete}
+        text='¿Estás seguro de que quieres eliminar esta película? Esta acción no se puede deshacer'
+        onYes={() => dispatch(deleteMovie(id))}
+        textYes='Eliminar película'
+        textNo='Cancelar'
+      />
     </div>
   )
 }
