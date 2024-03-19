@@ -1,9 +1,9 @@
 import Modal from 'react-bootstrap/Modal'
 import './GeneralModal.scss'
 import { useNavigate } from 'react-router-dom'
-import { logout, reset } from '@/Features/Auth/authSlice'
+import { setShowTokenModal, logout, reset } from '@/Features/Auth/authSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { setShowTokenModal, resetApiState } from '@/Features/Movies/movieSlice'
+import { resetApiState } from '@/Features/Movies/movieSlice'
 import { useEffect, useState } from 'react'
 
 // eslint-disable-next-line react/prop-types
@@ -12,7 +12,7 @@ const GeneralModal = () => {
   const dispatch = useDispatch()
 
   const [showModal, setShowModal] = useState(true)
-  const { showTokenModal, tokenModalInfo } = useSelector((state) => state.movie)
+  const { showTokenModal, tokenModalInfo } = useSelector((state) => state.auth)
   const onYes = tokenModalInfo?.onYes === 'LOGIN' ? '/login' : '/'
   const onNo = tokenModalInfo.onNo === 'LOGIN' ? '/login' : '/'
 

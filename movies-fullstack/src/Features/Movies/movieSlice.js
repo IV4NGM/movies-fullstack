@@ -10,9 +10,7 @@ const initialState = {
   successType: '',
   isError: false,
   errorType: '',
-  message: '',
-  showTokenModal: false,
-  tokenModalInfo: {}
+  message: ''
 }
 
 // Obtener todos los géneros
@@ -126,24 +124,20 @@ export const deleteMovie = createAsyncThunk('movies/delete', async (movieId, thu
   }
 })
 
-export const setShowTokenModal = createAsyncThunk('auth/token-modal', async (value, thunkAPI) => {
-  return value
-})
-
 const handleError = (state, action) => {
   const sessionExpiredMessages = ['El usuario no se encuentra en la base de datos', 'Acceso no autorizado', 'No se proporcionó un token']
   if (sessionExpiredMessages.includes(action.payload)) {
-    state.showTokenModal = true
-    state.tokenModalInfo = {
-      title: 'Sesión expirada',
-      text: 'Tu sesión ha expirado. Vulve a iniciar sesión para continuar disfrutando de tus películas favoritas.',
-      onYes: 'LOGIN',
-      onNo: 'LOGIN',
-      isCancelButton: false,
-      textNo: '',
-      textYes: 'Iniciar sesión',
-      estatico: true
-    }
+    // state.showTokenModal = true
+    // state.tokenModalInfo = {
+    //   title: 'Sesión expirada',
+    //   text: 'Tu sesión ha expirado. Vulve a iniciar sesión para continuar disfrutando de tus películas favoritas.',
+    //   onYes: 'LOGIN',
+    //   onNo: 'LOGIN',
+    //   isCancelButton: false,
+    //   textNo: '',
+    //   textYes: 'Iniciar sesión',
+    //   estatico: true
+    // }
     state.errorType = 'AUTH'
   }
 }
@@ -160,8 +154,6 @@ export const movieSlice = createSlice({
       state.successType = ''
       state.isLoading = false
       state.message = ''
-      state.showTokenModal = false
-      state.tokenModalInfo = {}
     }
   },
   extraReducers: (builder) => {
@@ -402,9 +394,6 @@ export const movieSlice = createSlice({
         state.message = action.payload
         state.errorType = 'DELETE_MOVIE'
         handleError(state, action)
-      })
-      .addCase(setShowTokenModal.fulfilled, (state, action) => {
-        state.showTokenModal = action.payload
       })
   }
 })

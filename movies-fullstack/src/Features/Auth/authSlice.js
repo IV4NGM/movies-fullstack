@@ -1,15 +1,22 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import authService from './authService'
 
+// Importar las acciones de movieSlice que pueden causar error de AUTH
+import { getContextMovies, getOneMovieContext, likeMovie, dislikeMovie, resetLikesMovie, createMovie, updateMovie, deleteMovie } from '@/Features/Movies/movieSlice'
+
 // Obtenemos del localStorage los datos del usuario
 const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
   user: user || null,
   isError: false,
+  errorType: '',
   isSuccess: false,
+  successType: '',
   isLoading: false,
-  message: ''
+  message: '',
+  showTokenModal: false,
+  tokenModalInfo: {}
 }
 
 // Registrar un nuevo usuario
@@ -79,7 +86,7 @@ export const resetPassword = createAsyncThunk('auth/reset-password', async (user
 
 // Actualizar contraseña
 // userData = {password, newPassword, logout}
-const updatePassword = createAsyncThunk('auth/update-password', async (userData, thunkAPI) => {
+export const updatePassword = createAsyncThunk('auth/update-password', async (userData, thunkAPI) => {
   try {
     return await authService.updatePassword(userData, thunkAPI.getState().auth.user.token)
   } catch (error) {
@@ -109,15 +116,42 @@ export const deleteUser = createAsyncThunk('auth/delete-user', async (_, thunkAP
   }
 })
 
+export const setShowTokenModal = createAsyncThunk('auth/token-modal', async (value, thunkAPI) => {
+  return value
+})
+
+const handleError = (state, action) => {
+  const sessionExpiredMessages = ['El usuario no se encuentra en la base de datos', 'Acceso no autorizado', 'No se proporcionó un token']
+  if (sessionExpiredMessages.includes(action.payload)) {
+    state.showTokenModal = true
+    state.tokenModalInfo = {
+      title: 'Sesión expirada',
+      text: 'Tu sesión ha expirado. Vulve a iniciar sesión para continuar disfrutando de tus películas favoritas.',
+      onYes: 'LOGIN',
+      onNo: 'LOGIN',
+      isCancelButton: false,
+      textNo: '',
+      textYes: 'Iniciar sesión',
+      estatico: true
+    }
+    state.isError = true
+    state.errorType = 'AUTH'
+  }
+}
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
     reset: (state) => {
       state.isError = false
+      state.errorType = ''
       state.isSuccess = false
+      state.successType = ''
       state.isLoading = false
       state.message = ''
+      state.showTokenModal = false
+      state.tokenModalInfo = {}
     }
   },
   extraReducers: (builder) => {
@@ -128,6 +162,7 @@ export const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
+        state.user = action.payload
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false
@@ -204,11 +239,18 @@ export const authSlice = createSlice({
       .addCase(updatePassword.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
+        state.message = 'Contraseña actualizada exitosamente'
+        state.successType = 'UPDATED_PASSWORD'
+        if (action.payload.logout) {
+          state.successType = 'UPDATED_PASSWORD_LOGOUT'
+        }
       })
       .addCase(updatePassword.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
+        state.errorType = 'UPDATE_PASSWORD'
+        handleError(state, action)
       })
       .addCase(updateUser.pending, (state) => {
         state.isLoading = true
@@ -217,11 +259,15 @@ export const authSlice = createSlice({
         state.isLoading = false
         state.isSuccess = true
         state.user.name = action.payload.name
+        state.message = 'Datos actualizados correctamente'
+        state.successType = 'UPDATED_USER'
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
+        state.errorType = 'UPDATE_USER'
+        handleError(state, action)
       })
       .addCase(deleteUser.pending, (state) => {
         state.isLoading = true
@@ -230,11 +276,42 @@ export const authSlice = createSlice({
         state.isLoading = false
         state.isSuccess = true
         state.user = null
+        state.message = 'Usuario eliminado exitosamente'
+        state.successType = 'DELETED_USER'
       })
       .addCase(deleteUser.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
+        state.errorType = 'DELETE_USER'
+        handleError(state, action)
+      })
+      .addCase(getContextMovies.rejected, (state, action) => {
+        handleError(state, action)
+      })
+      .addCase(getOneMovieContext.rejected, (state, action) => {
+        handleError(state, action)
+      })
+      .addCase(likeMovie.rejected, (state, action) => {
+        handleError(state, action)
+      })
+      .addCase(dislikeMovie.rejected, (state, action) => {
+        handleError(state, action)
+      })
+      .addCase(resetLikesMovie.rejected, (state, action) => {
+        handleError(state, action)
+      })
+      .addCase(createMovie.rejected, (state, action) => {
+        handleError(state, action)
+      })
+      .addCase(updateMovie.rejected, (state, action) => {
+        handleError(state, action)
+      })
+      .addCase(deleteMovie.rejected, (state, action) => {
+        handleError(state, action)
+      })
+      .addCase(setShowTokenModal.fulfilled, (state, action) => {
+        state.showTokenModal = action.payload
       })
   }
 })
