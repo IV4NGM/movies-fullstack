@@ -331,6 +331,8 @@ export const movieSlice = createSlice({
       .addCase(updateMovie.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
+        state.successType = 'UPDATED_MOVIE'
+        state.message = 'Película modificada exitosamente'
         state.movies = state.movies.map((movie) => {
           if (movie._id === action.payload._id) {
             return action.payload
@@ -356,6 +358,8 @@ export const movieSlice = createSlice({
       .addCase(deleteMovie.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
+        state.successType = 'DELETED_MOVIE'
+        state.message = 'Película eliminada exitosamente'
         state.movies = state.movies.filter((movie) => movie._id !== action.payload._id)
         state.likedMovies = state.likedMovies.filter((movie) => movie._id !== action.payload._id)
       })
