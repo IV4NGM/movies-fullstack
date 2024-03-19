@@ -1,11 +1,14 @@
+import '@/Styles/MovieInfo.scss'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import LikesButton from '@/Components/LikesButton/LikesButton'
 import { getOneMovieContext, resetApiState } from '@/Features/Movies/movieSlice'
 import { toast } from 'react-toastify'
 
 import NoMovie from '@/assets/NoMovie.jpg'
+
+import ReactPlayer from 'react-player/lazy'
 
 const MovieInfo = () => {
   const { id } = useParams()
@@ -87,6 +90,7 @@ const MovieInfo = () => {
         <LikesButton like filled={movieData?.isLiked === 1} likesCount={movieData?.likes_count || 0} movieId={movieData?._id} />
         <LikesButton like={false} filled={movieData?.isLiked === -1} likesCount={movieData?.dislikes_count || 0} movieId={movieData?._id} />
       </div>
+      <ReactPlayer light={movieData?.backdrop_path || movieData?.poster_path || NoMovie} url='https://youtu.be/-MBj2xT_WtQ?si=KPHvwmDYW52_2ZzG' controls playing />
     </div>
   )
 }
