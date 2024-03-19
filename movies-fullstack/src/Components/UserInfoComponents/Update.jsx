@@ -1,10 +1,12 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { useEffect, useState } from 'react'
+import { updateUser } from '@/Features/Auth/authSlice'
 
 const Update = ({ show = false, setSelectedAction }) => {
+  const dispatch = useDispatch()
+
   const { user } = useSelector((state) => state.auth)
 
   const updateUserFormSchema = yup.object().shape({
@@ -16,7 +18,7 @@ const Update = ({ show = false, setSelectedAction }) => {
   })
 
   const onSubmit = (data) => {
-    console.log(data)
+    dispatch(updateUser(data))
   }
 
   if (!show) return <></>

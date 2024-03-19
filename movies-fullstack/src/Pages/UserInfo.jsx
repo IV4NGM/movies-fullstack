@@ -1,15 +1,21 @@
 import '@/Styles/UserInfo.scss'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { reset } from '@/Features/Auth/authSlice'
 
 import Info from '@/Components/UserInfoComponents/Info'
 import Update from '@/Components/UserInfoComponents/Update'
 import Security from '@/Components/UserInfoComponents/Security'
+import { toast } from 'react-toastify'
 
 const UserInfo = () => {
   const navigate = useNavigate()
-  const { user } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+
+  const { user, isError, isSuccess, message, errorType, successType } = useSelector((state) => state.auth)
+  const errorTypesAllowed = ['UPDATE_PASSWORD', 'UPDATE_USER', 'DELETE_USER']
+  const successTypesAllowed = ['UPDATED_PASSWORD', 'UPDATED_PASSWORD_LOGOUT', 'UPDATED_USER', 'DELETED_USER']
 
   const [selectedAction, setSelectedAction] = useState('info')
 
@@ -22,6 +28,18 @@ const UserInfo = () => {
       navigate('/login')
     }
   }, [])
+
+  useEffect(() => {
+    if (isError && errorTypesAllowed.includes(errorType)) {
+      toast.error(message)
+    }
+    if (isSuccess && successTypesAllowed.includes(successType)) {
+      toast.success(message)
+    }
+    if (errorType !== 'AUTH') {
+      dispatch(reset())
+    }
+  }, [isError, isSuccess, message, errorType, successType])
 
   const handleSelect = (action) => {
     setSelectedAction(action)
@@ -52,7 +70,7 @@ const UserInfo = () => {
         <aside className='context-info'>
           <Info show={selectedAction === 'info'} />
           <Update show={selectedAction === 'update'} setSelectedAction={setSelectedAction} />
-          <Security show={selectedAction === 'security'} />
+          <Security show={selectedAction === 'security'} setSelectedAction={setSelectedAction} />
         </aside>
       </section>
     </div>
