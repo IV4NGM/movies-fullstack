@@ -21,6 +21,9 @@ const PendingEmailConfirmation = () => {
     if (!user || !user.email) {
       navigate('/login')
     }
+    if (user && user.isVerified) {
+      navigate('/')
+    }
     const interval = setInterval(() => {
       if (timeCounter > 0) {
         setTimeCounter(timeCounter - 1)

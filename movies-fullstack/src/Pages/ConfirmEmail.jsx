@@ -24,10 +24,10 @@ const ConfirmEmail = () => {
     if (isSuccess) {
       toast.success('Email verificado exitosamente')
       dispatch(reset())
-      dispatch(logout())
+      // dispatch(logout())
 
       setTimeout(() => {
-        navigate('/login')
+        navigate('/')
       }, 300)
     }
 

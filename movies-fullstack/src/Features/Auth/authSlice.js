@@ -203,6 +203,10 @@ export const authSlice = createSlice({
       .addCase(verifyUser.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
+        if (action.payload._id === state.user?._id) {
+          state.user = action.payload
+          localStorage.setItem('user', JSON.stringify(action.payload))
+        }
       })
       .addCase(verifyUser.rejected, (state, action) => {
         state.isLoading = false

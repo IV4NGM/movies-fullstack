@@ -6,6 +6,10 @@ const API_URL = import.meta.env.VITE_API_URL + 'users/'
 const register = async (userData) => {
   const response = await axios.post(API_URL, userData)
 
+  if (response.data) {
+    localStorage.setItem('user', JSON.stringify(response.data))
+  }
+
   return response.data
 }
 
@@ -23,6 +27,18 @@ const login = async (userData) => {
 // Logout a un usuario
 const logout = () => {
   localStorage.removeItem('user')
+}
+
+// Get usuario
+const getUser = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  const response = await axios.get(API_URL, config)
+
+  return response.data
 }
 
 // Petición de enviar email de verificación
@@ -102,6 +118,7 @@ const authService = {
   register,
   login,
   logout,
+  getUser,
   sendVerificationEmail,
   verifyUser,
   sendResetEmail,
