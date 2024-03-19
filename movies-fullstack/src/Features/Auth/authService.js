@@ -55,6 +55,19 @@ const resetPassword = async (userData) => {
   return response.data
 }
 
+// Actualizar contraseña
+// userData = {password, newPassword, logout}
+const updatePassword = async (userData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  const response = await axios.post(API_URL + 'update-password', userData, config)
+
+  return response.data
+}
+
 // Modificar usuario
 const updateUser = async (userData, token) => {
   const config = {
@@ -93,6 +106,7 @@ const authService = {
   verifyUser,
   sendResetEmail,
   resetPassword,
+  updatePassword,
   updateUser,
   deleteUser
 }
