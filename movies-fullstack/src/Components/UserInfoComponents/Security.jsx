@@ -137,7 +137,7 @@ const Security = ({ show = false, setSelectedAction }) => {
         title='Eliminar tu cuenta'
         showModal={showModalDelete}
         setShowModal={setShowModalDelete}
-        text='¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer'
+        text='¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.'
         onYes={() => dispatch(deleteUser())}
         textYes='Eliminar tu cuenta'
         textNo='Cancelar'
