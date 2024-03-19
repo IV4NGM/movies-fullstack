@@ -36,7 +36,9 @@ const Home = () => {
       console.log(message)
       toast.error(message)
     }
-    dispatch(resetApiState())
+    if (errorType !== 'AUTH') {
+      dispatch(resetApiState())
+    }
   }, [isError, isSuccess, message, errorType])
 
   return (

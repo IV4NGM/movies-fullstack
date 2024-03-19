@@ -40,9 +40,13 @@ const MovieInfo = () => {
   useEffect(() => {
     if (isError && errorTypesAllowed.includes(errorType)) {
       toast.error(message)
-      navigate('/')
+      if (message === 'La película no se encuentra en la base de datos') {
+        navigate('/')
+      }
     }
-    dispatch(resetApiState())
+    if (errorType !== 'AUTH') {
+      dispatch(resetApiState())
+    }
   }, [isError, isSuccess, message, errorType])
 
   const movieIndex = moviesIds.findIndex((movieId) => movieId === id)

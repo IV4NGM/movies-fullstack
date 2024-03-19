@@ -4,6 +4,7 @@ import Navbar from '@/Components/Navbar/Navbar'
 import Footer from '@/Components/Footer/Footer'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import GeneralModal from '@/Components/GeneralModal/GeneralModal'
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Navbar />
         <RoutesIndex />
         <Footer />
+        <GeneralModal />
       </BrowserRouter>
       <ToastContainer />
     </>

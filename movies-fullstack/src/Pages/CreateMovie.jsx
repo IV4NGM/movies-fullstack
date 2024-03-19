@@ -88,7 +88,9 @@ const CreateMovie = () => {
       toast.success(message)
       navigate('/')
     }
-    dispatch(resetApiState())
+    if (errorType !== 'AUTH') {
+      dispatch(resetApiState())
+    }
   }, [isError, isSuccess, message, errorType])
 
   if (isLoading) {
