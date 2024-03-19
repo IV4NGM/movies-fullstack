@@ -27,6 +27,7 @@ const ForgottenPassword = () => {
   const onSubmit = (data) => {
     toast.info('Te enviaremos un email si tus datos son correctos')
     dispatch(sendResetEmail(data.email))
+    navigate('/login')
   }
 
   useEffect(() => {
