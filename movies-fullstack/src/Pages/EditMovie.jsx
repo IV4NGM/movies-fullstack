@@ -128,6 +128,10 @@ const EditMovie = () => {
     setUserPosterURL(posterURL)
   }, [backdropURL, posterURL, movieData])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const handleBackdropChange = (event) => {
     setUserBackdropURL(event.target.value)
   }

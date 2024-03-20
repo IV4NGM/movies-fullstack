@@ -132,7 +132,7 @@ const Security = ({ show = false, setSelectedAction }) => {
         </form>
       </div>
       <h4 className='security-danger'>Zona de peligro</h4>
-      <button className='btn btn-danger' onClick={() => setShowModalDelete(true)}>Eliminar tu cuenta</button>
+      <button className='btn btn-danger btn-delete-user' onClick={() => setShowModalDelete(true)}>Eliminar tu cuenta</button>
       <CustomModal
         title='Eliminar tu cuenta'
         showModal={showModalDelete}
