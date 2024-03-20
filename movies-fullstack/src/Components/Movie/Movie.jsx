@@ -4,11 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import NoMovie from '@/assets/NoMovie.jpg'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 
 import StarImage from '@/assets/star-icon.webp'
 import { useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 const Movie = ({ movieData }) => {
   const { user } = useSelector((state) => state.auth)
@@ -45,19 +46,43 @@ const Movie = ({ movieData }) => {
           </div>
         )
         : ''}
-      <img
+      <div className={'card-img-movie movie-card-element movie-card-element-div' + (!showDetails ? ' movie-card-element-visible' : ' movie-card-element-invisible')}>
+        <LazyLoadImage
+          src={movieData?.poster_path || NoMovie}
+          alt='Poster'
+          className='card-img-movie'
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null
+            currentTarget.src = NoMovie
+          }}
+          effect='blur'
+          width='inherit'
+          height='inherit'
+        />
+      </div>
+      {/* <img
         src={movieData?.poster_path || NoMovie} className={'card-img-movie movie-card-element' + (!showDetails ? ' movie-card-element-visible' : ' movie-card-element-invisible')} alt='Poster' onError={({ currentTarget }) => {
           currentTarget.onerror = null
           currentTarget.src = NoMovie
         }}
-      />
+      /> */}
       <div className={'movie-card-details' + (showDetails ? ' movie-card-element-visible' : ' movie-card-element-invisible')}>
-        <img
+        <LazyLoadImage
+          src={movieData?.backdrop_path || NoMovie}
+          className='card-img-movie card-img-movie-backdrop'
+          alt='Backdrop'
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null
+            currentTarget.src = NoMovie
+          }}
+          effect='blur'
+        />
+        {/* <img
           src={movieData?.backdrop_path || NoMovie} className='card-img-movie card-img-movie-backdrop' alt='Backdrop' onError={({ currentTarget }) => {
             currentTarget.onerror = null
             currentTarget.src = NoMovie
           }}
-        />
+        /> */}
         <h5 className='movie-card-title'>{movieData.title}</h5>
         <div className='movie-row-container'>
           <p>Calificación:</p>

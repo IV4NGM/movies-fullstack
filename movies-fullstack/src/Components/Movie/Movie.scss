@@ -101,7 +101,7 @@ $eagle-red: #e5383b;
 
 .movie-card-element {
   position: absolute;
-  transition: opacity 0.5s ease;
+  // transition: opacity 0.5s ease;
   &-visible {
     // display: flex !important;
     flex-direction: column;
@@ -111,6 +111,9 @@ $eagle-red: #e5383b;
   &-invisible {
     // display: none !important;
     opacity: 0;
+  }
+  &-div {
+    height: 100%;
   }
 }
 
