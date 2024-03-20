@@ -90,6 +90,7 @@ const MovieInfo = () => {
         <LikesButton like filled={movieData?.isLiked === 1} likesCount={movieData?.likes_count || 0} movieId={movieData?._id} />
         <LikesButton like={false} filled={movieData?.isLiked === -1} likesCount={movieData?.dislikes_count || 0} movieId={movieData?._id} />
       </div>
+      {user?.isAdmin && <button className='btn btn-outline-secondary' onClick={() => navigate(`/edit/${movieData?._id}`)}>Editar película</button>}
       <ReactPlayer light={movieData?.backdrop_path || movieData?.poster_path || NoMovie} url='https://www.youtube.com/watch?v=Y4-sh2cVY1A&t=0s' controls playing />
     </div>
   )
