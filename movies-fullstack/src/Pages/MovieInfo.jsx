@@ -77,7 +77,7 @@ const MovieInfo = () => {
       <h3 className='card-title'>{movieData?.title || 'Título'}</h3>
 
       <img
-        src={movieData?.poster_path || NoMovie} className='card-img-top card-img-movie' alt='Poster' onError={({ currentTarget }) => {
+        src={movieData?.poster_path || NoMovie} className='movie-info-img' alt='Poster' onError={({ currentTarget }) => {
           currentTarget.onerror = null
           currentTarget.src = NoMovie
         }}
