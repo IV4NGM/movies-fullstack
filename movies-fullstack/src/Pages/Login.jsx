@@ -13,7 +13,7 @@ const Login = () => {
 
   const dispatch = useDispatch()
 
-  const { user, isError, isSuccess, isLoading, message } = useSelector((state) => state.auth)
+  const { user, isError, isSuccess, isLoading, message, errorType } = useSelector((state) => state.auth)
 
   const loginFormSchema = yup.object().shape({
     // eslint-disable-next-line no-useless-escape
@@ -34,7 +34,7 @@ const Login = () => {
   }
 
   useEffect(() => {
-    if (isError) {
+    if (isError && errorType === 'LOGIN') {
       toast.error(message)
     }
 
@@ -47,7 +47,7 @@ const Login = () => {
     }
 
     dispatch(reset())
-  }, [user, isError, isSuccess, message, navigate, dispatch])
+  }, [user, isError, isSuccess, message, errorType])
 
   if (isLoading) {
     return <Spinner />
