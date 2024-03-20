@@ -1,5 +1,6 @@
 $green-success: #198754;
 $green-success-light: #3da474;
+$eagle-red: #e5383b;
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
@@ -272,6 +273,85 @@ ul.navbar-nav{
   justify-content: space-between;
 }
 
+.two-content{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 70%;
+  align-items: center;
+  &-movie-info {
+    width: 90%;
+    justify-content: space-around;
+    margin-bottom: 80px;
+    align-items: normal !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .two-content {
+    width: 85%;
+    &-movie-info {
+      flex-direction: column;
+    }
+  }
+  .movie-info-container {
+    width: 100%;
+    &-right {
+      margin-top: 40px;
+    }
+  }
+  .react-player-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 900px) {
+  .two-content {
+    width: 90%;
+  }
+}
+
+@media (max-width: 800px) {
+  .two-content {
+    flex-direction: column;
+  }
+  .login-invitation-logo-container {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .two-content {
+    width: 95%;
+  }
+  .movie-info-data-container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    p.property-name {
+      // align-self: center;
+      font-weight: bold;
+      border-top: 1px solid white;
+      padding-top: 5px;
+      &-first {
+        border: 0;
+      }
+    }
+  }
+  .react-player-container {
+    height: 40vh;
+  }
+}
+
+@media (max-width: 450px) {
+  .two-content {
+    width: 100%;
+  }
+}
+
+
+
 .consult-text{
   margin-top: 200px;
   margin-bottom: 50px;
@@ -493,6 +573,29 @@ h1{
 // .movie-details p{
 //   text-align: initial;
 // }
+
+.movie-genre{
+  margin: 5px;
+  // border: 1px solid white;
+  padding: 5px 5px 5px 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: $eagle-red;
+  &-info-page {
+    font-size: 16px;
+    // margin-top: 0px;
+    // margin-bottom: 0px;
+    // padding-top: 0px;
+    // padding-bottom: 0px;
+    margin: 0;
+    padding: 0;
+    &-first {
+      // margin-left: 0;
+      // padding-left: 0;
+    }
+    display: inline-block;
+  }
+}
 
 .page-container {
   display: flex;

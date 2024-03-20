@@ -1,13 +1,16 @@
 .like-button-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  // align-items: center;
+  // justify-content: flex-end;
+  // width: inherit;
+  height: inherit;
   button{
     margin: 5px 5px;
     padding: 8px;
   }
   span {
-    font-size: 12px;
+    font-size: 14px;
     margin-top: -8px;
   }
 }

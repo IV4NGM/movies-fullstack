@@ -58,13 +58,16 @@ const LikesButton = ({ like = true, filled = true, likesCount, movieId }) => {
     }
   }
 
+  const iconWidth = 30
+  const iconHeight = 30
+
   return (
     <div className='like-button-container'>
       <Tooltip title={title} onClick={onClick}>
         <IconButton>
           {like
-            ? <>{filled ? <ThumbUpIcon color='success' /> : <ThumbUpOutlinedIcon color='success' />}</>
-            : <>{filled ? <ThumbDownIcon sx={{ color: red[500] }} /> : <ThumbDownOutlinedIcon sx={{ color: red[500] }} />}</>}
+            ? <>{filled ? <ThumbUpIcon color='success' sx={{ width: iconWidth, height: iconHeight }} /> : <ThumbUpOutlinedIcon color='success' sx={{ width: iconWidth, height: iconHeight }} />}</>
+            : <>{filled ? <ThumbDownIcon sx={{ width: iconWidth, height: iconHeight, color: red[500] }} /> : <ThumbDownOutlinedIcon sx={{ width: iconWidth, height: iconHeight, color: red[500] }} />}</>}
         </IconButton>
       </Tooltip>
       <span>{likesCount}</span>
