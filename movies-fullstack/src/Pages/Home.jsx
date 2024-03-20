@@ -16,7 +16,7 @@ const Home = () => {
   const { user } = useSelector((state) => state.auth)
   const { movies, isError, isSuccess, message, errorType } = useSelector((state) => state.movie)
 
-  const errorTypesAllowed = ['GET_MOVIES', 'LIKE_MOVIE']
+  const errorTypesAllowed = ['GET_MOVIES']
 
   useEffect(() => {
     if (user) {
