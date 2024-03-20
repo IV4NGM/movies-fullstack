@@ -6,6 +6,8 @@ import LikesButton from '@/Components/LikesButton/LikesButton'
 import NoMovie from '@/assets/NoMovie.jpg'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 
+import StarImage from '@/assets/star-icon.webp'
+
 const Movie = ({ movieData }) => {
   const { user } = useSelector((state) => state.auth)
   const navigate = useNavigate()
@@ -18,6 +20,13 @@ const Movie = ({ movieData }) => {
 
   // Construct the date string without the time component
   const dateWithoutTime = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`
+
+  const isNotLoggedRedirect = (route) => {
+    if (!user) {
+      return '/login'
+    }
+    return route
+  }
   return (
     <div className='card movie-card'>
       {user?.isAdmin
@@ -42,17 +51,20 @@ const Movie = ({ movieData }) => {
         <div className='movie-row-container'>
           <p className='card-text bold-text'>Calificación:</p>
           <p className='card-text'>{Math.round(movieData.vote_average * 10) / 10}</p>
-          <img className='star-image' />
+          <img className='star-image' src={StarImage} />
         </div>
         <div className='movie-row-container'>
           <p className='card-text bold-text'>Estreno:</p>
           <p className='card-text'>{dateWithoutTime}</p>
         </div>
+        <div className='movie-genres-container'>
+          {movieData?.genres.map((genre, index) => <button className='btn btn-outline-secondary movie-genre' key={`movie-${movieData?._id}-genre-${index}`}>{genre.name}</button>)}
+        </div>
         <div className='movie-row-container'>
           <LikesButton like filled={movieData.isLiked === 1} likesCount={movieData.likes_count} movieId={movieData._id} />
           <LikesButton like={false} filled={movieData.isLiked === -1} likesCount={movieData.dislikes_count} movieId={movieData._id} />
         </div>
-        <Link to={`/movie/${movieData._id}`} className='space-up'>Más información</Link>
+        <Link to={isNotLoggedRedirect(`/movie/${movieData._id}`)} className='space-up'>Más información</Link>
       </div>
     </div>
   )

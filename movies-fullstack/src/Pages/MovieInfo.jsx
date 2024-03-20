@@ -7,6 +7,7 @@ import { getOneMovieContext, resetApiState } from '@/Features/Movies/movieSlice'
 import { toast } from 'react-toastify'
 
 import NoMovie from '@/assets/NoMovie.jpg'
+import StarImage from '@/assets/star-icon.webp'
 
 import ReactPlayer from 'react-player/lazy'
 
@@ -52,6 +53,10 @@ const MovieInfo = () => {
     }
   }, [isError, isSuccess, message, errorType])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const movieIndex = moviesIds.findIndex((movieId) => movieId === id)
 
   if (movieIndex === -1) {
@@ -80,7 +85,7 @@ const MovieInfo = () => {
       <div className='movie-row-container'>
         <p className='card-text bold-text'>Calificación:</p>
         <p className='card-text'>{Math.round(movieData?.vote_average * 10) / 10 || '0'}</p>
-        <img className='star-image' />
+        <img className='star-image' src={StarImage} />
       </div>
       <div className='movie-row-container'>
         <p className='card-text bold-text'>Estreno:</p>
