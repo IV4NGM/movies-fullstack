@@ -1,20 +1,15 @@
 .movies-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 300px);
-  column-gap: 20px;
-  row-gap: 20px;
+  grid-template-columns: repeat(auto-fit, 316px);
+  column-gap: 30px;
+  row-gap: 30px;
   justify-content: center;
   &-div {
     width: 95%;
   }
 }
 
-.carousel-movie-title {
-  position: absolute;
-  top: 0px
-}
-
-.movie-genres-container{
-  display: flex;
-  flex-wrap: wrap;
-}
+// .carousel-movie-title {
+//   position: absolute;
+//   top: 0px
+// }

@@ -340,48 +340,15 @@ ul.navbar-nav{
   margin-top: 15px;
 }
 
-.movie-card{
-  width: 300px;
-  /* Comment all the following lines to activate Masonry */
-  /* height: 100%; */
-  padding: 18px;
-}
-
-.card-body-movie{
-  display: flex;
-  flex-direction: column;
-  /* Comment all the following lines to activate Masonry */
-  /* justify-content: space-between; */
-}
-
 .card-title{
   align-self: center;
   margin-bottom: 20px !important;
 }
 
-.card-img-movie{
-  height: auto;
-  width: 185px;
-  align-self: center;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
 
 .btn-play{
   display: flex;
   justify-content: center;
-}
-
-.movie-row-container{
-  display: flex;
-  align-items: center;
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-.movie-row-container p{
-  margin-bottom: 0;
-  margin-right: 5px;
 }
 
 .description-toggle{
@@ -512,20 +479,20 @@ h1{
   margin-top: 10px;
 }
 
-.movie-details{
-  display: flex;
-  flex-direction: column;
-  font-size: 18px;
-  margin: 20px 40px 20px 40px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 70%;
-  align-self: center;
-}
+// .movie-details{
+//   display: flex;
+//   flex-direction: column;
+//   font-size: 18px;
+//   margin: 20px 40px 20px 40px;
+//   align-items: flex-start;
+//   justify-content: flex-start;
+//   width: 70%;
+//   align-self: center;
+// }
 
-.movie-details p{
-  text-align: initial;
-}
+// .movie-details p{
+//   text-align: initial;
+// }
 
 .page-container {
   display: flex;
@@ -656,18 +623,18 @@ p.error-text {
   font-size: 18px;
 }
 
-.movie-image {
-  &-card {
-    height: 13rem;
-    width: 13rem;
-    object-fit: contain;
-    border-radius: 15px;
-    &--mini {
-      height: 5rem;
-      width: 5rem;
-    }
-  }
-}
+// .movie-image {
+//   &-card {
+//     height: 13rem;
+//     width: 13rem;
+//     object-fit: contain;
+//     border-radius: 15px;
+//     &--mini {
+//       height: 5rem;
+//       width: 5rem;
+//     }
+//   }
+// }
 
 .edit-image {
   margin-top: 2rem;
