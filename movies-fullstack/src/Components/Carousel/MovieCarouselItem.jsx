@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom'
-import './Carousel.scss'
+import './MoviesCarousel.scss'
 
 import NoMovie from '@/assets/NoMovie.jpg'
 import { useSelector } from 'react-redux'
 
-const MovieCarouselItem = ({ movieData, active }) => {
+const MovieCarouselItem = ({ movieData }) => {
   const navigate = useNavigate()
 
   const { user } = useSelector((state) => state.auth)
@@ -16,8 +16,8 @@ const MovieCarouselItem = ({ movieData, active }) => {
     return route
   }
   return (
-    <div className={'carousel-item' + (active ? ' active' : '')} onClick={() => navigate(isNotLoggedRedirect(`/movie/${movieData._id}`))}>
-      <div className='carousel-item-container'>
+    <div onClick={() => navigate(isNotLoggedRedirect(`/movie/${movieData._id}`))}>
+      <div>
         <img src={movieData?.backdrop_path || NoMovie} className='d-block w-100' alt='Trending movies' />
         <p className='carousel-movie-title'>{movieData?.title}</p>
       </div>

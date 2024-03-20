@@ -5,9 +5,10 @@ import Spinner from '@/Components/Spinner/Spinner'
 import { getAllGenres, getAllMovies, getContextMovies, resetApiState } from '@/Features/Movies/movieSlice'
 import MoviesContainer from '@/Components/MoviesContainer/MoviesContainer'
 import { toast } from 'react-toastify'
-import Carousel from '@/Components/Carousel/Carousel'
-import MovieCarouselItem from '@/Components/Carousel/MovieCarouselItem'
+// import Carousel from '@/Components/Carousel/MoviesCarousel'
+// import MovieCarouselItem from '@/Components/Carousel/MovieCarouselItem'
 import LoginInvitation from '@/Components/LoginInvitation/LoginInvitation'
+import MoviesCarousel from '@/Components/Carousel/MoviesCarousel'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -54,7 +55,7 @@ const Home = () => {
         <h1>Eagle Blade</h1>
         <h3 className='head-title'>Las películas y series más taquilleras</h3>
       </section>
-      <Carousel movies={movies.slice(0, 10)} />
+      <MoviesCarousel movies={movies.slice(0, 10)} />
       {!user && <LoginInvitation />}
       <MoviesContainer onlyLiked={false} />
     </div>
