@@ -5,15 +5,18 @@ import Spinner from '@/Components/Spinner/Spinner'
 import { getAllGenres, getAllMovies, getContextMovies, resetApiState } from '@/Features/Movies/movieSlice'
 import MoviesContainer from '@/Components/MoviesContainer/MoviesContainer'
 import { toast } from 'react-toastify'
+import Carousel from '@/Components/Carousel/Carousel'
+import MovieCarouselItem from '@/Components/Carousel/MovieCarouselItem'
+import LoginInvitation from '@/Components/LoginInvitation/LoginInvitation'
 
 const Home = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const { user } = useSelector((state) => state.auth)
-  const { isError, isSuccess, message, errorType } = useSelector((state) => state.movie)
+  const { movies, isError, isSuccess, message, errorType } = useSelector((state) => state.movie)
 
-  const errorTypesAllowed = ['GET_GENRES', 'GET_MOVIES', 'LIKE_MOVIE']
+  const errorTypesAllowed = ['GET_MOVIES', 'LIKE_MOVIE']
 
   useEffect(() => {
     if (user) {
@@ -41,12 +44,18 @@ const Home = () => {
     }
   }, [isError, isSuccess, message, errorType])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className='page-container'>
       <section className='heading'>
-        <h3>Bienvenido {user && user.name}</h3>
+        <h1>Eagle Blade</h1>
+        <h3 className='head-title'>Las películas y series más taquilleras</h3>
       </section>
-      <MoviesContainer />
+      <Carousel movies={movies.slice(0, 10)} />
+      {!user && <LoginInvitation />}
       <MoviesContainer onlyLiked={false} />
     </div>
   )

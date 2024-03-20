@@ -1,0 +1,33 @@
+.carousel{
+  margin-top: 40px;
+  width: 75%;
+  align-self: center;
+}
+
+.carousel-item:hover {
+  cursor: pointer;
+}
+
+.carousel-item-container {
+  width: 100%;
+  position: relative;
+}
+
+.carousel-movie-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  font-size: calc(1.325rem + .9vw);
+  transform: translate(-50%, -50%);
+  font-weight: 500;
+}
+
+.carousel-item img{
+  height: 62vh;
+  object-fit: cover;
+  object-position: 50% top;
+  background-color: black;
+  opacity: 0.25;
+}
+
