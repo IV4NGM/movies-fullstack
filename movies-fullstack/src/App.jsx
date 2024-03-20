@@ -5,6 +5,7 @@ import Footer from '@/Components/Footer/Footer'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import GeneralModal from '@/Components/GeneralModal/GeneralModal'
+import ScrollButton from '@/Components/ScrollButton/ScrollButton'
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <BrowserRouter>
         <Navbar />
         <RoutesIndex />
+        <ScrollButton />
         <Footer />
         <GeneralModal />
       </BrowserRouter>
