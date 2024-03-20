@@ -1,0 +1,27 @@
+.form-login-home {
+  min-width: 40vw;
+  &-title {
+    margin-bottom: 20px
+  }
+}
+
+@media (min-width: 1000px) {
+  .form-login-home {
+    min-width: 35vw !important;
+    max-width: 40vw !important;
+  }
+}
+
+
+@media (max-width: 450px) {
+  .form-login-home {
+    width: 90% !important;
+  }
+}
+
+
+@media (max-width: 450px) {
+  .form-login-home {
+    width: 90% !important;
+  }
+}
