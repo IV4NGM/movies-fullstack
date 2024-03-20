@@ -141,6 +141,7 @@ const Security = ({ show = false, setSelectedAction }) => {
         onYes={() => dispatch(deleteUser())}
         textYes='Eliminar tu cuenta'
         textNo='Cancelar'
+        danger
       />
     </>
   )

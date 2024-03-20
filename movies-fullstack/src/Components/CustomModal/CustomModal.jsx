@@ -1,10 +1,10 @@
 import Modal from 'react-bootstrap/Modal'
 import './CustomModal.scss'
 
-const nothingFunction = () => {}
+const nothingFunction = () => { }
 
 // eslint-disable-next-line react/prop-types
-const CustomModal = ({ title, showModal, setShowModal, text, onYes = nothingFunction, onNo = nothingFunction, isCancelButton = true, textNo = 'No', textYes = 'Sí', estatico = false }) => {
+const CustomModal = ({ title, showModal, setShowModal, text, onYes = nothingFunction, onNo = nothingFunction, isCancelButton = true, textNo = 'No', textYes = 'Sí', estatico = false, danger = false }) => {
   return (
     <Modal
       show={showModal} backdrop={estatico ? 'static' : true} keyboard={!estatico} onHide={() => {
@@ -27,11 +27,11 @@ const CustomModal = ({ title, showModal, setShowModal, text, onYes = nothingFunc
                 }}
               >{textNo}
               </button>
-              )
+            )
             : ''
         }
         <button
-          className='btn btn-outline-success btn-modal' onClick={() => {
+          className={'btn btn-modal ' + (danger ? 'btn-outline-danger' : 'btn-outline-success')} onClick={() => {
             onYes()
             setShowModal(false)
           }}

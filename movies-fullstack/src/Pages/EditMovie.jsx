@@ -313,10 +313,11 @@ const EditMovie = () => {
         title='Eliminar película'
         showModal={showModalDelete}
         setShowModal={setShowModalDelete}
-        text='¿Estás seguro de que quieres eliminar esta película? Esta acción no se puede deshacer'
+        text='¿Estás seguro de que quieres eliminar esta película? Esta acción no se puede deshacer.'
         onYes={() => dispatch(deleteMovie(id))}
         textYes='Eliminar película'
         textNo='Cancelar'
+        danger
       />
     </div>
   )
