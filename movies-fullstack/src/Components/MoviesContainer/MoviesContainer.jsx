@@ -8,7 +8,7 @@ const MoviesContainer = ({ onlyLiked = true }) => {
   if ((onlyLiked && likedMovies.length === 0) || (!onlyLiked && movies.length === 0)) return <></>
   return (
     <div className='movies-container-div'>
-      <h4>{onlyLiked ? 'Me gusta' : 'Todas las películas'}</h4>
+      <h2 className='space-up-lg space-down-lg'>{onlyLiked ? 'Me gusta' : 'Consulta nuestro catálogo'}</h2>
       <div className='movies-container'>
         {
           onlyLiked

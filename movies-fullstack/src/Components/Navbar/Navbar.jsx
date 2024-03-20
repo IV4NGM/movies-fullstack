@@ -13,6 +13,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import { useEffect } from 'react'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 const Navbar = () => {
   const dispatch = useDispatch()
@@ -40,6 +41,8 @@ const Navbar = () => {
     dispatch(resetApiState())
   }, [navigate])
 
+  const minQueryMatches = useMediaQuery('(min-width:1200px)')
+
   return (
     <nav className='navbar navbar-expand-lg bg-body-tertiary sticky-top' data-bs-theme='dark'>
       <div className='container-fluid'>
@@ -63,7 +66,7 @@ const Navbar = () => {
             )
             : (
               <>
-                <div className='dropdown navbar__dropdown'>
+                <div className={'dropdown navbar__dropdown ' + (!user?.isAdmin && !minQueryMatches ? 'take-two-columns' : '')}>
                   <button className='btn btn-outline-success dropdown-toggle' type='button' data-bs-toggle='dropdown'>
                     {user.name}
                   </button>

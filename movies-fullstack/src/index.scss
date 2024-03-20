@@ -102,8 +102,12 @@ li {
 h1,
 h2,
 h3 {
-  font-weight: 600;
+  // font-weight: 600;
   margin-bottom: 10px;
+}
+
+h1{
+  margin-top: 20px !important;
 }
 
 #root{
@@ -133,10 +137,10 @@ a:hover {
   min-height: 100vh;
 } */
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+// h1 {
+//   font-size: 3.2em;
+//   line-height: 1.1;
+// }
 
 button {
   border-radius: 8px;
@@ -205,44 +209,6 @@ h5{
   align-items: center;
 }
 
-.navbar-brand{
-  display: flex;
-  align-items: center;
-}
-
-.logo-nav{
-  width: 60px;
-  height: 60px;
-  margin-right: 20px;
-  // background-color: #6a040f;
-  // padding: 5px;
-  // border-radius: 50%;
-}
-
-// .big-logo{
-//   width: 300px;
-//   height: 300px;
-//   background-color: #6a040f;
-//   padding: 20px;
-//   border-radius: 50%;
-// }
-
-.navbar-brand p{
-  font-weight: bold;
-  margin: 0;
-}
-
-.nav-item{
-  margin-right: 20px;
-}
-
-.form-control{
-  min-width: fit-content;
-}
-
-a.navbar-brand{
-  margin-left: 10px;
-}
 
 a.nav-link{
   font-size: 17px;
@@ -253,24 +219,24 @@ ul.navbar-nav{
   margin-left: 20px;
 }
 
-.attribution{
-  display: flex;
-  margin: 20px 20px 20px 20px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
+// .attribution{
+//   display: flex;
+//   margin: 20px 20px 20px 20px;
+//   justify-content: center;
+//   align-items: center;
+//   flex-wrap: wrap;
+// }
 
-.attribution p{
-  margin: 0;
-  color: white;
-}
+// .attribution p{
+//   margin: 0;
+//   color: white;
+// }
 
-.attribution img{
-  height: 45px;
-  width: auto;
-  margin-right: 20px;
-}
+// .attribution img{
+//   height: 45px;
+//   width: auto;
+//   margin-right: 20px;
+// }
 
 .login-card{
   width: 40%;
@@ -288,13 +254,6 @@ ul.navbar-nav{
   object-position: 50% top;
 }
 
-.two-content{
-  margin-top: 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 70%;
-}
 
 .action-text{
   color: #004e98;
@@ -381,17 +340,6 @@ ul.navbar-nav{
   margin-top: 15px;
 }
 
-.movies-container{
-  width: 100%;
-  margin-left: 30px;
-  /* Comment all the following lines to activate Masonry */
-  /* display: grid;
-  grid-template-columns: repeat(3, 300px);
-  justify-content: center;
-  gap: 15px;
-  align-items: flex-start; */
-}
-
 .movie-card{
   width: 300px;
   /* Comment all the following lines to activate Masonry */
@@ -419,15 +367,6 @@ ul.navbar-nav{
   margin-bottom: 10px;
 }
 
-.movie-genres-container{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.movie-genre{
-  margin: 5px;
-}
-
 .btn-play{
   display: flex;
   justify-content: center;
@@ -443,12 +382,6 @@ ul.navbar-nav{
 .movie-row-container p{
   margin-bottom: 0;
   margin-right: 5px;
-}
-
-.star-image{
-  content: url('https://static.vecteezy.com/system/resources/previews/022/133/469/original/star-shape-star-icon-yellow-star-in-rating-symbol-free-png.png');
-  height: 18px;
-  width: 18px;
 }
 
 .description-toggle{
@@ -487,30 +420,6 @@ ul.navbar-nav{
   zoom: 50%;
 }
 
-.footer{
-  margin-top: 80px;
-  height: 90px;
-}
-
-.footer-body{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0px 30px 0px 30px !important;
-}
-
-.footer-body p{
-  margin: 0;
-}
-
-.mail-footer{
-  display: flex;
-}
-
-.mail-icon-footer{
-  margin-right: 10px;
-}
-
 .movies-container-grid{
   margin-top: 30px;
   display: grid;
@@ -519,13 +428,20 @@ ul.navbar-nav{
   justify-content: center;
 }
 
-.space-up{
+.space-up {
   margin-top: 10px;
+  &-lg {
+    margin-top: 80px;
+  }
+}
+
+.space-down-lg {
+  margin-bottom: 80px;
 }
 
 .head-title{
-  margin-top: 40px;
-  margin-bottom: 20px;
+  margin-top: 25px;
+  margin-bottom: 15px;
 }
 
 h1{
@@ -782,4 +698,14 @@ textarea::-webkit-scrollbar {
 
 textarea::-webkit-scrollbar-thumb:hover{
   background-color: rgb(171, 171, 171);
+}
+
+.not-found-image {
+  margin-top: 30px;
+  height: 170px !important;
+  width: 170px !important;
+}
+
+.btn-spaced {
+  margin-bottom: 10px
 }
