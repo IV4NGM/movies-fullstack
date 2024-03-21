@@ -11,6 +11,7 @@ import LoopOutlinedIcon from '@mui/icons-material/LoopOutlined'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined'
+import PasswordFormInput from '../PasswordFormInput/PasswordFormInput'
 
 const Security = ({ show = false, setSelectedAction }) => {
   const navigate = useNavigate()
@@ -69,7 +70,7 @@ const Security = ({ show = false, setSelectedAction }) => {
         <form
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className='form-floating'>
+          {/* <div className='form-floating'>
             <input
               type='password'
               name='password'
@@ -80,9 +81,10 @@ const Security = ({ show = false, setSelectedAction }) => {
             />
             <label htmlFor='password'>Contraseña actual</label>
           </div>
-          <p className='warning-text'>{errors.password?.message}</p>
+          <p className='warning-text'>{errors.password?.message}</p> */}
+          <PasswordFormInput name='password' placeholder='contraseña' label='Contraseña actual' id='password' register={register} error={errors.password} />
 
-          <div className='form-floating'>
+          {/* <div className='form-floating'>
             <input
               type='password'
               name='new_password'
@@ -93,9 +95,10 @@ const Security = ({ show = false, setSelectedAction }) => {
             />
             <label htmlFor='new_password'>Nueva contraseña</label>
           </div>
-          <p className='warning-text'>{errors.new_password?.message}</p>
+          <p className='warning-text'>{errors.new_password?.message}</p> */}
+          <PasswordFormInput name='new_password' placeholder='nueva contraseña' label='Nueva contraseña' id='new_password' register={register} error={errors.new_password} />
 
-          <div className='form-floating'>
+          {/* <div className='form-floating'>
             <input
               type='password'
               name='confirm_password'
@@ -106,7 +109,8 @@ const Security = ({ show = false, setSelectedAction }) => {
             />
             <label htmlFor='confirm_password'>Confirma tu contraseña</label>
           </div>
-          <p className='warning-text'>{errors.confirm_password?.message}</p>
+          <p className='warning-text'>{errors.confirm_password?.message}</p> */}
+          <PasswordFormInput name='confirm_password' placeholder='confirma tu contraseña' label='Confirma tu contraseña' id='confirm_password' register={register} error={errors.confirm_password} />
 
           {/* <select name='logout' className='form-select' id='logout' {...register('logout')}>
             <option value='true'>Cerrar sesión de todos los dispositivos</option>

@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import { useEffect } from 'react'
 
 import './LoginForm.scss'
+import PasswordFormInput from '../PasswordFormInput/PasswordFormInput'
 
 const LoginForm = ({ loginPage = true, initialState, setFormState }) => {
   const navigate = useNavigate()
@@ -71,9 +72,9 @@ const LoginForm = ({ loginPage = true, initialState, setFormState }) => {
             <label htmlFor='email'>Correo electrónico</label>
           </div>
           <p className='warning-text'>{errors.email?.message}</p>
-          <div className='form-floating'>
+          {/* <div className='form-floating form-password-input'>
             <input
-              type='password'
+              type={showPassword ? 'text' : 'password'}
               name='password'
               placeholder='contraseña'
               id='password'
@@ -82,8 +83,16 @@ const LoginForm = ({ loginPage = true, initialState, setFormState }) => {
               {...register('password')}
             />
             <label htmlFor='password'>Contraseña</label>
-          </div>
-          <p className='warning-text'>{errors.password?.message}</p>
+            <div className='form-password-input-toggler' onClick={() => setShowPassword(!showPassword)}>
+              <Tooltip title={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}>
+                <IconButton>
+                  {showPassword ? <VisibilityOffOutlinedIcon sx={{ color: 'black' }} /> : <VisibilityOutlinedIcon sx={{ color: 'black' }} />}
+                </IconButton>
+              </Tooltip>
+            </div>
+          </div> */}
+          <PasswordFormInput name='password' placeholder='contraseña' id='password' hasDefaultValue initialState={initialState} register={register} error={errors.password} />
+          {/* <p className='warning-text'>{errors.password?.message}</p> */}
 
           <button type='submit' className='btn btn-success btn-form space-down'>
             Iniciar Sesión

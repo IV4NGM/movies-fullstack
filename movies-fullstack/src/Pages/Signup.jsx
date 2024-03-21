@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { reset, register as registerUser } from '@/Features/Auth/authSlice'
 import Spinner from '@/Components/Spinner/Spinner'
+import PasswordFormInput from '@/Components/PasswordFormInput/PasswordFormInput'
 
 const Signup = () => {
   const navigate = useNavigate()
@@ -94,7 +95,7 @@ const Signup = () => {
             </div>
             <p className='warning-text'>{errors.email?.message}</p>
 
-            <div className='form-floating'>
+            {/* <div className='form-floating'>
               <input
                 type='password'
                 name='password'
@@ -105,9 +106,10 @@ const Signup = () => {
               />
               <label htmlFor='password'>Contraseña</label>
             </div>
-            <p className='warning-text'>{errors.password?.message}</p>
+            <p className='warning-text'>{errors.password?.message}</p> */}
+            <PasswordFormInput name='password' placeholder='contraseña' id='password' register={register} error={errors.password} />
 
-            <div className='form-floating'>
+            {/* <div className='form-floating'>
               <input
                 type='password'
                 name='confirm_password'
@@ -118,7 +120,8 @@ const Signup = () => {
               />
               <label htmlFor='confirm_password'>Confirma tu contraseña</label>
             </div>
-            <p className='warning-text'>{errors.confirm_password?.message}</p>
+            <p className='warning-text'>{errors.confirm_password?.message}</p> */}
+            <PasswordFormInput name='confirm_password' placeholder='contraseña' label='Confirma tu contraseña' id='confirm_password' register={register} error={errors.confirm_password} />
 
             <button type='submit' className='btn btn-success btn-form'>
               Registrarse
