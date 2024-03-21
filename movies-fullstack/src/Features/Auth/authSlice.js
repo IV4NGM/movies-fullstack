@@ -24,7 +24,7 @@ export const register = createAsyncThunk('auth/register', async (user, thunkAPI)
   try {
     return await authService.register(user)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -34,7 +34,7 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   try {
     return await authService.login(user)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -49,7 +49,7 @@ export const sendVerificationEmail = createAsyncThunk('auth/send-verification-em
   try {
     return await authService.sendVerificationEmail(email)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -59,7 +59,7 @@ export const verifyUser = createAsyncThunk('auth/verify', async (userData, thunk
   try {
     return await authService.verifyUser(userData)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -69,7 +69,7 @@ export const sendResetEmail = createAsyncThunk('auth/send-reset-email', async (e
   try {
     return await authService.sendResetEmail(email)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -79,7 +79,7 @@ export const resetPassword = createAsyncThunk('auth/reset-password', async (user
   try {
     return await authService.resetPassword(userData)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -90,7 +90,7 @@ export const updatePassword = createAsyncThunk('auth/update-password', async (us
   try {
     return await authService.updatePassword(userData, thunkAPI.getState().auth.user.token)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -100,7 +100,7 @@ export const updateUser = createAsyncThunk('auth/update-user', async (userData, 
   try {
     return await authService.updateUser(userData, thunkAPI.getState().auth.user.token)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -111,7 +111,7 @@ export const deleteUser = createAsyncThunk('auth/delete-user', async (_, thunkAP
   try {
     return await authService.deleteUser(thunkAPI.getState().auth.user.token)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })

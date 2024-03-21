@@ -18,7 +18,7 @@ export const getAllGenres = createAsyncThunk('movies/get-genres', async (_, thun
   try {
     return await movieService.getAllGenres()
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -28,7 +28,7 @@ export const getAllMovies = createAsyncThunk('movies/get-movies', async (_, thun
   try {
     return await movieService.getAllMovies()
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -38,7 +38,7 @@ export const getContextMovies = createAsyncThunk('movies/get-movies-context', as
   try {
     return await movieService.getContextMovies(thunkAPI.getState().auth.user.token)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -48,7 +48,7 @@ export const getOneMovie = createAsyncThunk('movies/get-one-movie', async (movie
   try {
     return await movieService.getOneMovie(movieId)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -58,7 +58,7 @@ export const getOneMovieContext = createAsyncThunk('movies/get-one-movie-context
   try {
     return await movieService.getOneMovieContext(movieId, thunkAPI.getState().auth.user.token)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -68,7 +68,7 @@ export const likeMovie = createAsyncThunk('movies/like', async (movieId, thunkAP
   try {
     return await movieService.likeMovie(movieId, thunkAPI.getState().auth.user.token)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -78,7 +78,7 @@ export const dislikeMovie = createAsyncThunk('movies/dislike', async (movieId, t
   try {
     return await movieService.dislikeMovie(movieId, thunkAPI.getState().auth.user.token)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -88,7 +88,7 @@ export const resetLikesMovie = createAsyncThunk('movies/reset-likes', async (mov
   try {
     return await movieService.resetLikesMovie(movieId, thunkAPI.getState().auth.user.token)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -98,7 +98,7 @@ export const createMovie = createAsyncThunk('movies/create', async (movieData, t
   try {
     return await movieService.createMovie(movieData, thunkAPI.getState().auth.user.token)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -109,7 +109,7 @@ export const updateMovie = createAsyncThunk('movies/update', async (movieData, t
   try {
     return await movieService.updateMovie(movieData, thunkAPI.getState().auth.user.token)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
@@ -119,7 +119,7 @@ export const deleteMovie = createAsyncThunk('movies/delete', async (movieId, thu
   try {
     return await movieService.deleteMovie(movieId, thunkAPI.getState().auth.user.token)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    const message = error?.response?.data?.message || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)
   }
 })
