@@ -63,7 +63,7 @@ const Navbar = () => {
                 <button className='btn btn-secondary btn-not-logged' onClick={() => navigate('/signup')}>Registrarse</button>
                 <button className='btn btn-success btn-not-logged' onClick={() => navigate('/login')}>Iniciar sesión</button>
               </>
-            )
+              )
             : (
               <>
                 <div className={'dropdown navbar__dropdown ' + (!user?.isAdmin && !minQueryMatches ? 'take-two-columns' : '')}>
@@ -86,7 +86,7 @@ const Navbar = () => {
                   </ul>
                 </div>
               </>
-            )}
+              )}
         </div>
       </div>
 

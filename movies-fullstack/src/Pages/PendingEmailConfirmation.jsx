@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { reset, sendVerificationEmail } from '@/Features/Auth/authSlice'
 
 import { useSelector, useDispatch } from 'react-redux'
@@ -7,7 +7,6 @@ import { toast } from 'react-toastify'
 import Spinner from '@/Components/Spinner/Spinner'
 
 const PendingEmailConfirmation = () => {
-  const { newUser } = useParams()
   const [timeCounter, setTimeCounter] = useState(10)
   const [resendEmail, setResendEmail] = useState(false)
 

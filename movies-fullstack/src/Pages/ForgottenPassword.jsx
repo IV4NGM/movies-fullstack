@@ -5,8 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { reset, sendResetEmail } from '@/Features/Auth/authSlice'
 import { toast } from 'react-toastify'
-import { useEffect, useState } from 'react'
-import Spinner from '@/Components/Spinner/Spinner'
+import { useEffect } from 'react'
 
 const ForgottenPassword = () => {
   const navigate = useNavigate()

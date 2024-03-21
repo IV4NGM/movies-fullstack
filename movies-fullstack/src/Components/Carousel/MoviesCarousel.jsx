@@ -13,7 +13,7 @@ const MoviesCarousel = ({ movies }) => {
 
   return (
     <Carousel activeIndex={index} onSelect={handleSelect} interval={3500}>
-      {movies.map((movie, index) => (
+      {movies && movies.map((movie, index) => (
         <Carousel.Item key={`carousel-movie-${index}`}>
           <MovieCarouselItem movieData={movie} key={`carousel-movie-info-${index}`} />
         </Carousel.Item>

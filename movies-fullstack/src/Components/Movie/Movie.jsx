@@ -44,7 +44,7 @@ const Movie = ({ movieData }) => {
             }}
           ><EditOutlinedIcon />
           </div>
-        )
+          )
         : ''}
       <div className={'card-img-movie movie-card-element movie-card-element-div' + (!showDetails ? ' movie-card-element-visible' : ' movie-card-element-invisible')}>
         <LazyLoadImage

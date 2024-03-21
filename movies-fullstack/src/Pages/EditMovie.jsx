@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getAllGenres, createMovie, resetApiState, getOneMovie, updateMovie, deleteMovie } from '@/Features/Movies/movieSlice'
+import { getAllGenres, resetApiState, getOneMovie, updateMovie, deleteMovie } from '@/Features/Movies/movieSlice'
 
 import TextField from '@mui/material/TextField'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -16,10 +16,8 @@ import utc from 'dayjs/plugin/utc'
 
 import NoMovie from '@/assets/NoMovie.jpg'
 import { toast } from 'react-toastify'
-import Spinner from '@/Components/Spinner/Spinner'
 import CustomModal from '@/Components/CustomModal/CustomModal'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import LoopOutlinedIcon from '@mui/icons-material/LoopOutlined'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 
@@ -33,20 +31,18 @@ const EditMovie = () => {
   const { id } = useParams()
 
   const { user } = useSelector((state) => state.auth)
-  const { genres, movies, isSuccess, successType, isError, message, errorType, isLoading } = useSelector((state) => state.movie)
+  const { genres, movies, isSuccess, successType, isError, message, errorType } = useSelector((state) => state.movie)
 
   let movieData = {}
-  let releaseDate = {}
+  // let releaseDate = {}
 
   const moviesIds = movies.map((movie) => movie._id)
   const movieIndex = moviesIds.findIndex((movieId) => movieId === id)
 
   if (movieIndex !== -1) {
     movieData = movies[movieIndex]
-    // setBackdropURL(movieData?.backdrop_path)
-    // setPosterURL(movieData?.poster_path)
   }
-  releaseDate = new Date(movieData?.release_date) || new Date()
+  // releaseDate = new Date(movieData?.release_date) || new Date()
   const genreIdsSelected = movieData?.genres?.map(genre => genre.genre_id)
 
   const successTypesAllowed = ['UPDATED_MOVIE', 'DELETED_MOVIE']
@@ -226,16 +222,6 @@ const EditMovie = () => {
             <p className='warning-text'>{errors.vote_average?.message}</p>
 
             <p className='medium-text'>Géneros</p>
-            {/* {!genresAllowed.length &&
-              <button
-                className='btn btn-secondary'
-                type='button'
-                onClick={() => {
-                  dispatch(getAllGenres())
-                }}
-              >
-                <LoopOutlinedIcon /> Recargar géneros
-              </button>} */}
             <div className='form-genres-container'>
               {movieData?.genres?.length && genresAllowed.map((genre, index) => (
                 <div className='form-check' key={`genre-div-${index}`}>

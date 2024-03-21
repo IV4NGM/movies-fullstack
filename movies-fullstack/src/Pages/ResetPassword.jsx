@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { logout, reset, resetPassword } from '@/Features/Auth/authSlice'
@@ -10,7 +10,6 @@ import Spinner from '@/Components/Spinner/Spinner'
 
 const ResetPassword = () => {
   const { id, token } = useParams()
-  const [callApi, setCallApi] = useState(true)
 
   const navigate = useNavigate()
 

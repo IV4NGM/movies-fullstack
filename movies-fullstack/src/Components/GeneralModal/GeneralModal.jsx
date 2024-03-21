@@ -53,7 +53,7 @@ const GeneralModal = () => {
                 }}
               >{tokenModalInfo?.textNo}
               </button>
-            )
+              )
             : ''
         }
         <button

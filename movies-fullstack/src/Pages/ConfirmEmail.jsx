@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { reset, verifyUser, logout } from '@/Features/Auth/authSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-import Spinner from '@/Components/Spinner/Spinner'
 
 const ConfirmEmail = () => {
   const { id, token } = useParams()
@@ -13,7 +12,7 @@ const ConfirmEmail = () => {
 
   const dispatch = useDispatch()
 
-  const { user, isError, isSuccess, isLoading, message } = useSelector((state) => state.auth)
+  const { user, isError, isSuccess, message } = useSelector((state) => state.auth)
 
   useEffect(() => {
     if (id && token && callApi) {

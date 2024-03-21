@@ -1,12 +1,9 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import Spinner from '@/Components/Spinner/Spinner'
 import { getAllGenres, getAllMovies, getContextMovies, resetApiState } from '@/Features/Movies/movieSlice'
 import MoviesContainer from '@/Components/MoviesContainer/MoviesContainer'
 import { toast } from 'react-toastify'
-// import Carousel from '@/Components/Carousel/MoviesCarousel'
-// import MovieCarouselItem from '@/Components/Carousel/MovieCarouselItem'
 import LoginInvitation from '@/Components/LoginInvitation/LoginInvitation'
 import MoviesCarousel from '@/Components/Carousel/MoviesCarousel'
 

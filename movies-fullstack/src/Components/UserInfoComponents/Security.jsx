@@ -16,7 +16,7 @@ const Security = ({ show = false, setSelectedAction }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const { user, isError, isSuccess, message, errorType, successType } = useSelector((state) => state.auth)
+  const { isError, isSuccess, message, errorType, successType } = useSelector((state) => state.auth)
 
   const [isLogoutSelected, setIsLogoutSelected] = useState(true)
   const [showModalDelete, setShowModalDelete] = useState(false)

@@ -27,7 +27,7 @@ const CustomModal = ({ title, showModal, setShowModal, text, onYes = nothingFunc
                 }}
               >{textNo}
               </button>
-            )
+              )
             : ''
         }
         <button

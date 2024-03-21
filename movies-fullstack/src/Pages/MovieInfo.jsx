@@ -1,16 +1,15 @@
 import '@/Styles/MovieInfo.scss'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import React, { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import LikesButton from '@/Components/LikesButton/LikesButton'
 import { getOneMovieContext, resetApiState } from '@/Features/Movies/movieSlice'
 import { toast } from 'react-toastify'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 
 import NoMovie from '@/assets/NoMovie.jpg'
-import StarImage from '@/assets/star-icon.webp'
 
-import ReactPlayer from 'react-player/lazy'
+import ReactPlayer from 'react-player/youtube'
 
 const MovieInfo = () => {
   const { id } = useParams()
