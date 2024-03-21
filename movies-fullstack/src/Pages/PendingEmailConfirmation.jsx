@@ -58,9 +58,9 @@ const PendingEmailConfirmation = () => {
 
   return (
     <div className='page-container'>
-      <h2>Confirma tu dirección de correo electrónico</h2>
-      <h3>Bienvenido {user?.name}</h3>
-      <p>Revisa tu correo electrónico para terminar de configurar tu cuenta</p>
+      <h2 className='bold-text'>Confirma tu dirección de correo electrónico</h2>
+      <h3 className='space-down'>¡Hola {user?.name}!</h3>
+      <h4 className='space-down-lg'>Revisa tu correo electrónico para terminar de configurar tu cuenta</h4>
       <p>¿No encuentras el correo electrónico?</p>
       <button
         disabled={!resendEmail}
