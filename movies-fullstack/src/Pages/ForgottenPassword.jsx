@@ -69,7 +69,7 @@ const ForgottenPassword = () => {
             >Enviar correo de recuperación
             </button>
           </form>
-          <Link to='/signup'>Volver a Inicio de Sesión</Link>
+          <Link to='/login'>Volver a Inicio de Sesión</Link>
         </div>
       </div>
     </div>
