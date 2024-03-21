@@ -301,9 +301,6 @@ ul.navbar-nav{
   }
   .movie-info-container {
     width: 100%;
-    &-right {
-      margin-top: 40px;
-    }
   }
   .react-player-container {
     width: 90%;
@@ -603,13 +600,14 @@ form {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  color: black;
+  color: black !important;
 
   &-container {
     box-shadow: 0px 0px 6px 0px gray;
     padding: 25px;
     border-radius: 10px;
     background-color: white;
+    color: black !important;
   }
 
   &-movie {
@@ -669,6 +667,10 @@ form {
   label {
     color: black;
   }
+}
+
+.form-check-label {
+  color: black !important;
 }
 
 @media (max-width: 900px) {
@@ -744,6 +746,7 @@ p.error-text {
 
 .medium-text {
   font-size: 18px;
+  color: black !important;
 }
 
 .edit-image {
