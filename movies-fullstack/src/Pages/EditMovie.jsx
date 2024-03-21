@@ -18,6 +18,11 @@ import NoMovie from '@/assets/NoMovie.jpg'
 import { toast } from 'react-toastify'
 import Spinner from '@/Components/Spinner/Spinner'
 import CustomModal from '@/Components/CustomModal/CustomModal'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import LoopOutlinedIcon from '@mui/icons-material/LoopOutlined'
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
+
 dayjs.extend(utc)
 
 const EditMovie = () => {
@@ -45,7 +50,7 @@ const EditMovie = () => {
   const genreIdsSelected = movieData?.genres?.map(genre => genre.genre_id)
 
   const successTypesAllowed = ['UPDATED_MOVIE', 'DELETED_MOVIE']
-  const errorTypesAllowed = ['GET_GENRES', 'UPDATE_MOVIE', 'DELETE_MOVIE']
+  const errorTypesAllowed = ['GET_ONE_MOVIE', 'UPDATE_MOVIE', 'DELETE_MOVIE']
 
   const genresAllowed = genres
 
@@ -65,7 +70,7 @@ const EditMovie = () => {
     title: yup.string().required('Escribe el título de la película').stripEmptyString().default(movieData.title),
     original_title: yup.string().required('Escribe el título original de la película').stripEmptyString().default(movieData.original_title),
     original_language: yup.string().required('Escribe el idioma original de la película').stripEmptyString().default(movieData.original_language),
-    vote_average: yup.string('Debes ingresar un número').required('Escribe la calificación de la película').matches(/^[1-9]\d*(\.\d{1,2})?$/, 'La calificación debe ser un número con máximo 2 decimales').typeError('Debes ingresar un número'),
+    vote_average: yup.string('Debes ingresar un número').required('Escribe la calificación de la película').matches(/^[1-9]\d*(\.\d{1,3})?$/, 'La calificación debe ser un número con máximo 3 decimales').typeError('Debes ingresar un número'),
     overview: yup.string().required('Escribe la descripción de la película').stripEmptyString().default(movieData.overview),
     genre_ids: yup.array().min(1, 'Selecciona al menos un género'),
     backdrop_path: yup.string().required('Ingresa una imagen de fondo de la película').stripEmptyString().default(movieData.backdrop_path),
@@ -143,7 +148,7 @@ const EditMovie = () => {
   return (
     <div className='page-container'>
       <h2>Editar película</h2>
-      <div className='form form-movie'>
+      <div className='form form-movie form-update-movie'>
         <div className='form-container'>
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -206,7 +211,7 @@ const EditMovie = () => {
               />
             </LocalizationProvider>
 
-            <div className='form-floating'>
+            <div className='form-floating form-average-score'>
               <input
                 type='text'
                 name='vote_average'
@@ -220,29 +225,31 @@ const EditMovie = () => {
             </div>
             <p className='warning-text'>{errors.vote_average?.message}</p>
 
-            <p className='medium-text'>Géneros de la película</p>
-            {!genresAllowed.length &&
+            <p className='medium-text'>Géneros</p>
+            {/* {!genresAllowed.length &&
               <button
                 className='btn btn-secondary'
                 type='button'
                 onClick={() => {
-                  dispatch(resetApiState())
+                  dispatch(getAllGenres())
                 }}
               >
-                Recargar géneros
-              </button>}
-            {movieData?.genres?.length && genresAllowed.map((genre, index) => (
-              <div className='form-check' key={`genre-div-${index}`}>
-                <input
-                  type='checkbox'
-                  id={`genre_${genre.genre_id}`}
-                  value={genre.genre_id}
-                  className='form-check-input'
-                  defaultChecked={genreIdsSelected?.includes(genre.genre_id)}
-                  {...register('genre_ids')}
-                />
-                <label className='form-check-label' htmlFor={`genre_${genre.genre_id}`}>{genre.name}</label>
-              </div>))}
+                <LoopOutlinedIcon /> Recargar géneros
+              </button>} */}
+            <div className='form-genres-container'>
+              {movieData?.genres?.length && genresAllowed.map((genre, index) => (
+                <div className='form-check' key={`genre-div-${index}`}>
+                  <input
+                    type='checkbox'
+                    id={`genre_${genre.genre_id}`}
+                    value={genre.genre_id}
+                    className='form-check-input'
+                    defaultChecked={genreIdsSelected?.includes(genre.genre_id)}
+                    {...register('genre_ids')}
+                  />
+                  <label className='form-check-label' htmlFor={`genre_${genre.genre_id}`}>{genre.name}</label>
+                </div>))}
+            </div>
             <p className='warning-text'>{errors.genre_ids?.message.includes('genre_ids') ? 'Selecciona al menos un género' : errors.genre_ids?.message}</p>
 
             <div className='form-floating'>
@@ -303,12 +310,12 @@ const EditMovie = () => {
             <p className='warning-text'>{errors.poster_path?.message}</p>
 
             <button type='submit' className='btn btn-success'>
-              Modificar película
+              <EditOutlinedIcon /> Modificar película
             </button>
 
             <div className='flex-row buttons-row'>
-              <button type='button' className='btn btn-outline-secondary' onClick={() => navigate('/')}>Descartar cambios</button>
-              <button type='button' className='btn btn-outline-danger' onClick={() => setShowModalDelete(true)}>Eliminar película</button>
+              <button type='button' className='btn btn-outline-secondary' onClick={() => navigate('/')}><CancelOutlinedIcon /> Descartar cambios</button>
+              <button type='button' className='btn btn-outline-danger' onClick={() => setShowModalDelete(true)}><DeleteOutlineOutlinedIcon /> Eliminar película</button>
             </div>
           </form>
         </div>

@@ -59,7 +59,7 @@ const UserInfo = () => {
 
   return (
     <div className='page-container'>
-      <h3>Configuración</h3>
+      <h3 className='my-info-page-title'>Configuración</h3>
       <section className='my-info'>
         <article className='actions-list'>
           <div className={classesNamesCheckSelected('action action-border-bottom', 'info')} onClick={() => handleSelect('info')}>

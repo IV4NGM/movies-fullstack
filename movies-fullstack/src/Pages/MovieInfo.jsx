@@ -98,20 +98,21 @@ const MovieInfo = () => {
         </div>
         <div className='movie-info-container movie-info-container-right'>
           <div className='movie-info-data-container'>
-            <p className='property-name property-name-first'>Título original</p>
-            <p>{movieData?.original_title}</p>
-            <p className='property-name'>Idioma original</p>
-            <p>{movieData?.original_language}</p>
+            <p className='property-name property-name-first'>Sinopsis</p>
+            <p className='movie-overview'>{movieData?.overview}</p>
+            <div className='row-separator' />
+            <p className='property-name'>Géneros</p>
+            <p className='movie-info-allow-wrap'>{movieData?.genres?.map((genre, index) => <span key={`movie-${movieData?._id}-genre-${index}`}><span className={'movie-genre movie-genre-info-page' + (index === 0 ? ' movie-genre-info-page-first' : '')}>{genre.name}</span>&nbsp;&nbsp;&nbsp;</span>)}</p>
             <p className='property-name'>Calificación</p>
             <p>{Math.round(movieData?.vote_average * 10) / 10 || '0'}</p>
             <p className='property-name'>Público recomendado</p>
             <p>{movieData?.adult ? 'Mayores de 18' : 'Para todo público'}</p>
-            <p className='property-name'>Géneros</p>
-            <p className='movie-info-allow-wrap'>{movieData?.genres?.map((genre, index) => <span key={`movie-${movieData?._id}-genre-${index}`}><span className={'movie-genre movie-genre-info-page' + (index === 0 ? ' movie-genre-info-page-first' : '')}>{genre.name}</span>&nbsp;&nbsp;&nbsp;</span>)}</p>
+            <p className='property-name'>Título original</p>
+            <p>{movieData?.original_title}</p>
+            <p className='property-name'>Idioma original</p>
+            <p>{movieData?.original_language}</p>
             <p className='property-name'>Fecha de estreno</p>
             <p>{dateWithoutTime}</p>
-            <p className='property-name'>Sinopsis</p>
-            <p className='movie-overview'>{movieData?.overview}</p>
           </div>
           {user?.isAdmin && <button className='btn btn-outline-secondary movie-info-edit-button' onClick={() => navigate(`/edit/${movieData?._id}`)}><EditOutlinedIcon /> Editar película</button>}
         </div>

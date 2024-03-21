@@ -338,6 +338,10 @@ ul.navbar-nav{
         border: 0;
       }
     }
+    box-shadow: none;
+  }
+  .row-separator {
+    display: none;
   }
   .react-player-container {
     height: 40vh;
@@ -482,8 +486,11 @@ ul.navbar-nav{
   }
 }
 
-.space-down-lg {
-  margin-bottom: 80px;
+.space-down {
+  margin-bottom: 20px;
+  &-lg {
+    margin-bottom: 80px;
+  }
 }
 
 .head-title{
@@ -663,6 +670,20 @@ form {
       box-shadow: 0 0 0 0.25rem rgba(25,135,84,.25);
     }
   }
+
+  &-average-score {
+    margin-top: 26px;
+  }
+
+  &-genres-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    justify-items: start;
+  }
+
+  &-hint-text-bottom {
+    margin-top: 20px !important;
+  }
 }
 
 @media (max-width: 900px) {
@@ -686,6 +707,20 @@ form {
 @media (max-width: 600px) {
   .form {
     width: 80%;
+  }
+}
+
+@media (max-width: 585px) {
+  .form-update-movie {
+    font-size: 11px;
+    width: 100%;
+    border-radius: 0;
+    & .btn {
+      font-size: 11px !important;
+    }
+    & .MuiInputLabel-formControl {
+      font-size: 11px !important;
+    }
   }
 }
 
@@ -738,8 +773,10 @@ p.error-text {
 .edit-image {
   margin-top: 2rem;
   align-self: center;
+  border-radius: 20px;
   height: 15rem;
   width: 15rem;
+  object-fit: contain;
 }
 
 textarea {

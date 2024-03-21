@@ -65,7 +65,7 @@ const ForgottenPassword = () => {
             <p className='warning-text'>{errors.email?.message}</p>
             <button
               type='submit'
-              className='btn btn-success btn-form'
+              className='btn btn-success btn-form space-down'
             >Enviar correo de recuperación
             </button>
           </form>

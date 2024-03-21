@@ -7,6 +7,10 @@ import { useEffect, useState } from 'react'
 import { resetApiState } from '@/Features/Movies/movieSlice'
 import { useNavigate } from 'react-router-dom'
 import CustomModal from '@/Components/CustomModal/CustomModal'
+import LoopOutlinedIcon from '@mui/icons-material/LoopOutlined'
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
+import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined'
 
 const Security = ({ show = false, setSelectedAction }) => {
   const navigate = useNavigate()
@@ -124,15 +128,15 @@ const Security = ({ show = false, setSelectedAction }) => {
           <p className='warning-text'>{errors.logout?.message}</p>
 
           <div className='flex-row buttons-row'>
-            <button type='button' className='btn btn-outline-secondary' onClick={() => setSelectedAction('info')}>Descartar cambios</button>
+            <button type='button' className='btn btn-outline-secondary' onClick={() => setSelectedAction('info')}><CancelOutlinedIcon /> Descartar cambios</button>
             <button type='submit' className='btn btn-success btn-form'>
-              Actualizar datos
+              <LoopOutlinedIcon /> Actualizar datos
             </button>
           </div>
         </form>
       </div>
-      <h4 className='security-danger'>Zona de peligro</h4>
-      <button className='btn btn-danger btn-delete-user' onClick={() => setShowModalDelete(true)}>Eliminar tu cuenta</button>
+      <h4 className='security-danger'><WarningAmberOutlinedIcon /> Zona de peligro</h4>
+      <button className='btn btn-danger btn-delete-user' onClick={() => setShowModalDelete(true)}><DeleteOutlineOutlinedIcon /> Eliminar tu cuenta</button>
       <CustomModal
         title='Eliminar tu cuenta'
         showModal={showModalDelete}

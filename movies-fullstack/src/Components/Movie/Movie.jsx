@@ -56,8 +56,8 @@ const Movie = ({ movieData }) => {
             currentTarget.src = NoMovie
           }}
           effect='blur'
-          width='inherit'
-          height='inherit'
+          width='100%'
+          height='100%'
         />
       </div>
       {/* <img
@@ -67,7 +67,7 @@ const Movie = ({ movieData }) => {
         }}
       /> */}
       <div className={'movie-card-details' + (showDetails ? ' movie-card-element-visible' : ' movie-card-element-invisible')}>
-        <LazyLoadImage
+        {/* <LazyLoadImage
           src={movieData?.backdrop_path || NoMovie}
           className='card-img-movie card-img-movie-backdrop'
           alt='Backdrop'
@@ -76,13 +76,13 @@ const Movie = ({ movieData }) => {
             currentTarget.src = NoMovie
           }}
           effect='blur'
-        />
-        {/* <img
+        /> */}
+        <img
           src={movieData?.backdrop_path || NoMovie} className='card-img-movie card-img-movie-backdrop' alt='Backdrop' onError={({ currentTarget }) => {
             currentTarget.onerror = null
             currentTarget.src = NoMovie
           }}
-        /> */}
+        />
         <h5 className='movie-card-title'>{movieData.title}</h5>
         <div className='movie-row-container'>
           <p>Calificación:</p>

@@ -9,16 +9,29 @@
   padding-bottom: 20px;
   border-radius: 10px;
   min-height: 50vh;
+  & h4 {
+    margin-top: 15px;
+  }
+  &-page-title {
+    margin-top: 30px !important;
+    margin-bottom: 40px !important;
+  }
 }
 .actions-list {
   width: 20%;
   border-right: 1px solid gray;
   padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   & .action {
     display: flex;
-    padding-left: 25px;
+    padding-left: 15px;
+    // padding-right: 15px;
+    width: 100%;
     justify-content: flex-start;
     align-items: center;
+    text-wrap: wrap;
     &-selected {
       background-color: rgba(228, 228, 228, 0.695);
     }
@@ -33,27 +46,123 @@
     }
   }
 }
+
+@media (max-width: 1000px) {
+  .my-info {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 0;
+    padding-right: 0;
+    width: 95%;
+  }
+  .actions-list {
+    flex-direction: row;
+    width: inherit;
+    border-right: 0;
+    border-bottom: 1px solid gray;
+    padding-right: 0;
+    margin-bottom: 10px;
+    & .action {
+      justify-content: center;
+      height: inherit;
+      &-border-bottom{
+        border-bottom: 0;
+      }
+    }
+  }
+  .update-user-form {
+    width: 75% !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .my-info {
+    font-size: 11px;
+    width: 100%;
+    border-radius: 0;
+  }
+  .update-user-form {
+    width: 95% !important;
+  }
+}
+
+@media (max-width: 585px) {
+  .my-info {
+    font-size: 11px;
+    width: 100%;
+    border-radius: 0;
+    & .btn {
+      font-size: 11px !important;
+    }
+  }
+}
+
+@media (max-width: 475px) {
+  .actions-list {
+    font-size: 9px;
+  }
+  .my-info {
+    overflow: hidden;
+  }
+  .personal-info-container {
+    width: 75% !important;
+  }
+  .context-info {
+    width: 95% !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .actions-list {
+    font-size: 8px;
+  }
+  .personal-info-container {
+    width: 100% !important;
+  }
+}
+
+
 .context-info {
   width: 80%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .update-user-form {
   align-self: center;
+  min-width: 50% !important;
+  & .form-check {
+    align-self: flex-start;
+    margin-bottom: 10px;
+    &-label {
+      margin-left: 10px;
+    }
+  }
 }
 
 .security-danger {
   color: red;
-  margin-top: 20px;
+  margin-top: 60px !important;
   border-top: 1px solid gray;
   margin-left: 20px;
   margin-right: 10px;
-  padding-top: 20px;
-  margin-bottom: 30px;
+  padding-top: 35px;
+  margin-bottom: 35px;
+  width: 100%;
 }
 
 .btn-delete-user {
   max-width: 250px;
   align-self: center;
+  margin-bottom: 30px;
+}
+
+.personal-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+  margin-top: 20px;
+  font-size: 18px;
 }

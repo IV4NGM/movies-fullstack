@@ -124,7 +124,7 @@ const Signup = () => {
               Registrarse
             </button>
           </form>
-          <p>¿Ya eres un usuario?</p>
+          <p className='form-hint-text-bottom'>¿Ya eres un usuario?</p>
           <Link to='/login'>Inicia sesión</Link>
         </div>
       </div>

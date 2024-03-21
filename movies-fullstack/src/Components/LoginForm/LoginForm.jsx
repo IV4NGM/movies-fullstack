@@ -85,12 +85,12 @@ const LoginForm = ({ loginPage = true, initialState, setFormState }) => {
           </div>
           <p className='warning-text'>{errors.password?.message}</p>
 
-          <button type='submit' className='btn btn-success btn-form'>
+          <button type='submit' className='btn btn-success btn-form space-down'>
             Iniciar Sesión
           </button>
         </form>
-        <Link to='/forgotten'>¿Olvidaste tu contraseña?</Link>
-        <p>¿Eres un nuevo usuario?</p>
+        <Link to='/forgotten' className='form-hint-text-bottom'>¿Olvidaste tu contraseña?</Link>
+        <p className='form-hint-text-bottom'>¿Eres un nuevo usuario?</p>
         <Link to='/signup'>Regístrate ahora</Link>
       </div>
     </div>

@@ -9,9 +9,12 @@ const Info = ({ show = false }) => {
   if (!show) return <></>
   return (
     <>
-      <p className='dropdown-item-flex__p'><AccountBoxOutlinedIcon className='dropdown-item-flex__icon' /> {user?.name}</p>
-      <p className='dropdown-item-flex__p'><EmailOutlinedIcon className='dropdown-item-flex__icon' /> {user?.email}</p>
-      {user?.isAdmin ? <p className='dropdown-item-flex__p'><VerifiedUserOutlinedIcon className='dropdown-item-flex__icon' /> Administrador</p> : ''}
+      <h4>Mi información</h4>
+      <div className='personal-info-container'>
+        <p><AccountBoxOutlinedIcon sx={{ width: 30, height: 30, marginInlineEnd: 1 }} /> {user?.name}</p>
+        <p><EmailOutlinedIcon sx={{ width: 30, height: 30, marginInlineEnd: 1 }} /> {user?.email}</p>
+        {user?.isAdmin ? <p><VerifiedUserOutlinedIcon sx={{ width: 30, height: 30, marginInlineEnd: 1 }} /> Administrador</p> : ''}
+      </div>
     </>
   )
 }

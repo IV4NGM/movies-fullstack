@@ -16,6 +16,8 @@ import 'dayjs/locale/es'
 import NoMovie from '@/assets/NoMovie.jpg'
 import { toast } from 'react-toastify'
 import Spinner from '@/Components/Spinner/Spinner'
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
+import LoopOutlinedIcon from '@mui/icons-material/LoopOutlined'
 
 const CreateMovie = () => {
   dayjs.locale('es')
@@ -37,7 +39,7 @@ const CreateMovie = () => {
     title: yup.string().required('Escribe el título de la película'),
     original_title: yup.string().required('Escribe el título original de la película'),
     original_language: yup.string().required('Escribe el idioma original de la película'),
-    vote_average: yup.string('Debes ingresar un número').required('Escribe la calificación de la película').matches(/^[1-9]\d*(\.\d{1,2})?$/, 'La calificación debe ser un número con máximo 2 decimales').typeError('Debes ingresar un número'),
+    vote_average: yup.string('Debes ingresar un número').required('Escribe la calificación de la película').matches(/^[1-9]\d*(\.\d{1,3})?$/, 'La calificación debe ser un número con máximo 3 decimales').typeError('Debes ingresar un número'),
     overview: yup.string().required('Escribe la descripción de la película'),
     genre_ids: yup.array().min(1, 'Selecciona al menos un género'),
     backdrop_path: yup.string().required('Ingresa una imagen de fondo de la película'),
@@ -104,7 +106,7 @@ const CreateMovie = () => {
   return (
     <div className='page-container'>
       <h2>Crear una nueva película</h2>
-      <div className='form form-movie'>
+      <div className='form form-movie form-update-movie'>
         <div className='form-container'>
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -164,7 +166,7 @@ const CreateMovie = () => {
               />
             </LocalizationProvider>
 
-            <div className='form-floating'>
+            <div className='form-floating form-average-score'>
               <input
                 type='text'
                 name='vote_average'
@@ -177,7 +179,7 @@ const CreateMovie = () => {
             </div>
             <p className='warning-text'>{errors.vote_average?.message}</p>
 
-            <p className='medium-text'>Géneros de la película</p>
+            <p className='medium-text'>Géneros</p>
             {!genresAllowed.length &&
               <button
                 className='btn btn-secondary'
@@ -186,19 +188,21 @@ const CreateMovie = () => {
                   dispatch(getAllGenres())
                 }}
               >
-                Recargar géneros
+                <LoopOutlinedIcon /> Recargar géneros
               </button>}
-            {genresAllowed.map((genre, index) => (
-              <div className='form-check' key={`genre-div-${index}`}>
-                <input
-                  type='checkbox'
-                  id={`genre_${genre.genre_id}`}
-                  value={genre.genre_id}
-                  className='form-check-input'
-                  {...register('genre_ids')}
-                />
-                <label className='form-check-label' htmlFor={`genre_${genre.genre_id}`}>{genre.name}</label>
-              </div>))}
+            <div className='form-genres-container'>
+              {genresAllowed.map((genre, index) => (
+                <div className='form-check' key={`genre-div-${index}`}>
+                  <input
+                    type='checkbox'
+                    id={`genre_${genre.genre_id}`}
+                    value={genre.genre_id}
+                    className='form-check-input'
+                    {...register('genre_ids')}
+                  />
+                  <label className='form-check-label' htmlFor={`genre_${genre.genre_id}`}>{genre.name}</label>
+                </div>))}
+            </div>
             <p className='warning-text'>{errors.genre_ids?.message.includes('genre_ids') ? 'Selecciona al menos un género' : errors.genre_ids?.message}</p>
 
             <div className='form-floating'>
@@ -258,7 +262,7 @@ const CreateMovie = () => {
             <p className='warning-text'>{errors.poster_path?.message}</p>
 
             <button type='submit' className='btn btn-success'>
-              Crear película
+              <AddOutlinedIcon /> Crear película
             </button>
           </form>
         </div>
