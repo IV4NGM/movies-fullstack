@@ -56,7 +56,7 @@ const Navbar = () => {
       </div>
       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
         <div className='navbar-nav me-auto mb-2 mb-lg-0'>
-          {user && user?.isAdmin ? <button className='btn btn-success btn-new-movie' onClick={() => navigate('/new-movie')} disabled={!user?.isVerified}>Crear película</button> : ''}
+          {user && user?.isAdmin ? <button className='btn btn-outline-success btn-new-movie' onClick={() => navigate('/new-movie')} disabled={!user?.isVerified}><AddOutlinedIcon /> Crear película</button> : ''}
           {!user
             ? (
               <>
@@ -67,7 +67,7 @@ const Navbar = () => {
             : (
               <>
                 <div className={'dropdown navbar__dropdown ' + (!user?.isAdmin && !minQueryMatches ? 'take-two-columns' : '')}>
-                  <button className='btn btn-outline-success dropdown-toggle' type='button' data-bs-toggle='dropdown'>
+                  <button className='btn btn-success dropdown-toggle' type='button' data-bs-toggle='dropdown'>
                     {user.name}
                   </button>
                   <ul className='dropdown-menu dropdown-menu-end'>

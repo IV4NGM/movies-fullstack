@@ -147,7 +147,7 @@ const EditMovie = () => {
 
   return (
     <div className='page-container'>
-      <h2>Editar película</h2>
+      <h2 className='form-update-movie-title'>Editar película</h2>
       <div className='form form-movie form-update-movie'>
         <div className='form-container'>
           <form
@@ -314,7 +314,7 @@ const EditMovie = () => {
             </button>
 
             <div className='flex-row buttons-row'>
-              <button type='button' className='btn btn-outline-secondary' onClick={() => navigate('/')}><CancelOutlinedIcon /> Descartar cambios</button>
+              <button type='button' className='btn btn-secondary' onClick={() => navigate('/')}><CancelOutlinedIcon /> Descartar cambios</button>
               <button type='button' className='btn btn-outline-danger' onClick={() => setShowModalDelete(true)}><DeleteOutlineOutlinedIcon /> Eliminar película</button>
             </div>
           </form>

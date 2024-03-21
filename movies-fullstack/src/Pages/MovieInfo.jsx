@@ -114,7 +114,7 @@ const MovieInfo = () => {
             <p className='property-name'>Fecha de estreno</p>
             <p>{dateWithoutTime}</p>
           </div>
-          {user?.isAdmin && <button className='btn btn-outline-secondary movie-info-edit-button' onClick={() => navigate(`/edit/${movieData?._id}`)}><EditOutlinedIcon /> Editar película</button>}
+          {user?.isAdmin && <button className='btn btn-outline-secondary movie-info-edit-button' onClick={() => navigate(`/edit/${movieData?._id}`)}><EditOutlinedIcon /> Modificar película</button>}
         </div>
       </div>
       <div className='react-player-container'>

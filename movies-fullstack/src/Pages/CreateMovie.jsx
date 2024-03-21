@@ -105,7 +105,7 @@ const CreateMovie = () => {
 
   return (
     <div className='page-container'>
-      <h2>Crear una nueva película</h2>
+      <h2 className='form-update-movie-title'>Crear una nueva película</h2>
       <div className='form form-movie form-update-movie'>
         <div className='form-container'>
           <form

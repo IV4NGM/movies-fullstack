@@ -1,4 +1,4 @@
-$green-success: #198754;
+$success: #0269b7;
 
 .scroll-button {
   position: fixed;
@@ -11,11 +11,11 @@ $green-success: #198754;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $green-success;
+  background-color: $success;
   color: white;
 
   &:hover {
-    border-color: $green-success;
+    border-color: $success;
     transform: scale(1.05);
     transition: 2ms ease-in-out;
   }

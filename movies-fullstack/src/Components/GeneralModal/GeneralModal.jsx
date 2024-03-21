@@ -47,7 +47,7 @@ const GeneralModal = () => {
           tokenModalInfo?.isCancelButton
             ? (
               <button
-                className='btn btn-outline-secondary btn-modal' onClick={() => {
+                className='btn btn-secondary btn-modal' onClick={() => {
                   onNo()
                   dispatch(setShowTokenModal(false))
                 }}

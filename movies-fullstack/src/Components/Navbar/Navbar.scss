@@ -1,5 +1,5 @@
-$green-success: #198754;
-$green-success-lighter: rgba(61, 164, 116, 0.650);
+$success: #0269b7;
+$custom-success-ligther: #38a5f8;
 
 .navbar {
   display: flex;
@@ -8,7 +8,7 @@ $green-success-lighter: rgba(61, 164, 116, 0.650);
   padding-right: 30px !important;
 
   &--is-active {
-    color: $green-success !important;
+    color: $success !important;
   }
 
   &-brand-logo {
@@ -68,7 +68,6 @@ $green-success-lighter: rgba(61, 164, 116, 0.650);
   &-flex {
   display: flex;
   flex-direction: column;
-  // align-items: center;
     &__title {
       margin: 10px 0px;
     }
@@ -83,8 +82,9 @@ $green-success-lighter: rgba(61, 164, 116, 0.650);
   }
 
   &:active {
-    // color: white !important;
-    background-color: $green-success-lighter !important;
+    color: white !important;
+    // background-color: $custom-success-ligther !important;
+    background-color: inherit !important;
   }
 
   &__p {
@@ -133,7 +133,6 @@ $green-success-lighter: rgba(61, 164, 116, 0.650);
 
 .navbar-collapse {
   border-top: 1px solid rgba(0,0,0,.1);
-  // padding-top: 20px;
   min-width: 300px;
 }
 
@@ -179,9 +178,9 @@ $green-success-lighter: rgba(61, 164, 116, 0.650);
 }
 
 .navbar-toggler {
-  color: #198754 !important;
+  color: $success !important;
   &:hover {
-    border-color: #198754 !important
+    border-color: $success !important
   }
 }
 

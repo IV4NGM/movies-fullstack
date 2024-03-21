@@ -128,7 +128,7 @@ const Security = ({ show = false, setSelectedAction }) => {
           <p className='warning-text'>{errors.logout?.message}</p>
 
           <div className='flex-row buttons-row'>
-            <button type='button' className='btn btn-outline-secondary' onClick={() => setSelectedAction('info')}><CancelOutlinedIcon /> Descartar cambios</button>
+            <button type='button' className='btn btn-secondary' onClick={() => setSelectedAction('info')}><CancelOutlinedIcon /> Descartar cambios</button>
             <button type='submit' className='btn btn-success btn-form'>
               <LoopOutlinedIcon /> Actualizar datos
             </button>
@@ -136,7 +136,7 @@ const Security = ({ show = false, setSelectedAction }) => {
         </form>
       </div>
       <h4 className='security-danger'><WarningAmberOutlinedIcon /> Zona de peligro</h4>
-      <button className='btn btn-danger btn-delete-user' onClick={() => setShowModalDelete(true)}><DeleteOutlineOutlinedIcon /> Eliminar tu cuenta</button>
+      <button className='btn btn-outline-danger btn-delete-user' onClick={() => setShowModalDelete(true)}><DeleteOutlineOutlinedIcon /> Eliminar tu cuenta</button>
       <CustomModal
         title='Eliminar tu cuenta'
         showModal={showModalDelete}

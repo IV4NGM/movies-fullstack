@@ -45,7 +45,7 @@ const Update = ({ show = false, setSelectedAction }) => {
           </div>
           <p className='warning-text'>{errors.name?.message}</p>
           <div className='flex-row buttons-row'>
-            <button type='button' className='btn btn-outline-secondary' onClick={() => setSelectedAction('info')}><CancelOutlinedIcon /> Descartar cambios</button>
+            <button type='button' className='btn btn-secondary' onClick={() => setSelectedAction('info')}><CancelOutlinedIcon /> Descartar cambios</button>
             <button type='submit' className='btn btn-success btn-form'>
               <LoopOutlinedIcon /> Actualizar datos
             </button>
