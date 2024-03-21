@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = import.meta.env.VITE_API_URL + 'users/'
+const API_URL = process.env.REACT_APP_API_URL + 'users/'
 
 // Creamos la petición al backend para crear un usuario
 const register = async (userData) => {
