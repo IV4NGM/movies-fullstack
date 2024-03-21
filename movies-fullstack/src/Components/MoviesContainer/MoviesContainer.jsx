@@ -12,8 +12,8 @@ const MoviesContainer = ({ onlyLiked = true }) => {
       <div className='movies-container'>
         {
           onlyLiked
-            ? likedMovies.map((movie, index) => <Movie movieData={movie} key={`liked-${index}`} />)
-            : movies.map((movie, index) => <Movie movieData={movie} key={`all-${index}`} />)
+            ? likedMovies && likedMovies.map((movie, index) => <Movie movieData={movie} key={`liked-${index}`} />)
+            : movies && movies.map((movie, index) => <Movie movieData={movie} key={`all-${index}`} />)
         }
       </div>
     </div>
